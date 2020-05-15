@@ -1,12 +1,13 @@
 ## Database
-    [] Create junction table
-    [] Connecting movies, genres, junction table
+[x] Create junction table
+[x] Connecting movies, genres, junction table
+
 
 ## Home/ List Page
     [] Display all of the movie in DOM.
+        [x] Create components (Home/ListPage, Detail)
+        [x] Using HashRouter to able to moving between components with links
         [] Using Saga to get data from database
-        [] Create components (Home/ListPage, Detail)
-        [] Using HashRouter to able to moving between components with links
         [] Mapping through the data that got from Saga GET request
         [] Handle click for each movie item to able to go to it's details page
 

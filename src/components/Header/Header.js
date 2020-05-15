@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { HashRouter, Route, Link } from 'react-router-dom';
-import Home from '../Home/Home';
-import Details from '../Details/Details'
+
 
 class Header extends Component {
+    // handleClick = () => {
+    //     // handle next button to moving to component understanding 
+    //     this.props.history.push('/details');
+
+    // }
     render() {
         return (
             <div>
-                <HashRouter>
-                    <Link to= '/'>Home</Link>
-                    <Route exact path="/" component={Home} />
-                    <Route path="/details" component={Details} />
-                </HashRouter>
+                <Link to='/'>Home</Link>
+                <Link to='/details'>Details</Link>
+                {/* <button onClick={this.handleClick}>Clicked</button> */}
             </div>
         )
     }

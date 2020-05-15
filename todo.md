@@ -8,7 +8,7 @@
         [x] Create components (Home/ListPage, Detail)
         [x] Using HashRouter to able to moving between components with links
         [x] Using Saga to get data from database
-        [] Mapping through the data that got from Saga GET request
+        [x] Mapping through the data that got from Saga GET request
         [] Handle click for each movie item to able to go to it's details page
 
 ## Details Page

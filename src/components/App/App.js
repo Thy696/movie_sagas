@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from '../Header/Header';
-
+import { HashRouter, Route, Link } from 'react-router-dom';
+import Home from '../Home/Home';
+import Details from '../Details/Details'
 
 
 
@@ -10,7 +12,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        <HashRouter>
+          <Header />
+          <Route exact path="/" component={Home} />
+          <Route path="/details" component={Details} />
+        </HashRouter>
       </div>
     );
   }

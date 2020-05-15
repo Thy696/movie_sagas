@@ -10,6 +10,8 @@ Duration: 2 days sprint
     - With Postico, I use JOIN to pull out the relationship data from two table in database.
 ### Display datas from database to DOM via Saga
 [] With Saga, I create an GET request in `index.js` by axios to get movies list and name of genres from database. 
+[] Using map to loop through the array of movies that got from database to append them to DOM
+
 
 ## Screen Shot
 

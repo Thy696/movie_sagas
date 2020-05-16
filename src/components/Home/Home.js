@@ -16,11 +16,14 @@ class Home extends Component {
             type: 'FETCH_MOVIES',
         })
     }
+
+
+
     render() {
         return (
             <div>
                 {/* <Link to='/'>Home</Link> */}
-                <h1>This is home</h1>
+                {/* <h1>This is home</h1> */}
                 {/* mapping through the array movies that get from index to append list of movies to DOM */}
                 {this.props.reduxState.movies.map((movie) => {
                     return (

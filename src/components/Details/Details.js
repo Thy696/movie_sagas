@@ -4,49 +4,29 @@ import { connect } from 'react-redux';
 
 class Details extends Component {
 
-    componentDidMount() {
-        this.getGenres();
-    }
-
-
-    handleBack = () =>{
+    handleBack = () => {
         console.log('Back clicked!');
-        this.props.history.push ('/');
+        this.props.history.push('/');
     }
-
-
-    getGenres = () => {
-        console.log('get dispatch send!');
-        this.props.dispatch({
-            type: 'FETCH_GENRES',
-            
-        })
-    }
-
+  
     render() {
         return (
             <div>
-                {/* <h1>Details</h1> */}
-                
-                {/* <ul>
-                    {this.props.reduxState.genres.map((item) =>
-                        <li key={item.id}>Movie title: {item.title}, Genres: {item.name}</li>
+                <button onClick={this.handleBack}>Back to list</button>
 
-                    )}
-                </ul> */}
+                <p>{this.props.reduxState.details.title}</p>
+                <p>{this.props.reduxState.details.description}</p>
                 <ul>
                     {
                         this.props.reduxState.genres.map(item => {
                             return (
-                                <li key={item.genres_id}>Movie title:{item.title}, Genres: {item.name}</li>
+                                <li key={item.genres_id}>
+                                    Movie title:{item.movie}, 
+                                    Genres: {item.genres}</li>
                             )
                         })
                     }
                 </ul>
-                <button onClick = {this.handleBack}>Back to list</button>
-                <p>{this.props.reduxState.details.title}</p>
-                <p>{this.props.reduxState.details.description}</p>
-
             </div>
         )
     }

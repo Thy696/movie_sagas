@@ -24,17 +24,17 @@ app.get('/movies', (req, res) => {
         })
 })
 
-app.get(`/genres/:name`, (req, res) => {
+app.get(`/genres/:id`, (req, res) => {
     //go to database, get all of data from movies table and order them by id
-    const titleToGet = req.body.name;
+    const titleToGet = req.params.id;
     console.log('------------> get req.param',titleToGet)
-    const queryText = `SELECT genres.name AS genrer, movies.title as movie FROM movies 
+    const queryText = `SELECT  movies.title as movie , genres.name AS genres FROM movies 
     JOIN junction ON movies.id = junction.movie_id
     JOIN genres ON genres.id = junction.genres_id
-    WHERE movies.title = '$1';`
+    WHERE movies.id = $1;`
     pool.query(queryText, [titleToGet])
         .then((result) => {
-            console.log(`Title for genres: ${titleToGet}`)
+                console.log(`Title for genres: ${titleToGet}`)
             res.send(result.rows);//return rows
         }).catch(err => {
             console.log('Error on GET genres', err);

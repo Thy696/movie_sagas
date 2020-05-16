@@ -39,11 +39,11 @@ function* getMovies(action) {
 
 //get detail include title and description from MovieItem
 function* getDetail(action) {
-    console.log('in getDetail', action.payload);
+    // console.log('in getDetail', action.payload);
     let forDetail = action.payload;
     //try catch
     try {
-        console.log('data in try getDetail: ', forDetail);
+        // console.log('data in try getDetail: ', forDetail);
         yield put({
             type: 'SET_DETAIL', // set action type = SET_DETAIL
             payload: forDetail// set payload equal dispatch that we got from `MovieItem.js`
@@ -55,17 +55,16 @@ function* getDetail(action) {
 
 function* getGenres(action) {
     console.log('----->----- in getGenres', action.payload);
-    let searchDetail = action.payload;
     //try catch
     try {
-        const response = yield axios.get(`/genres/:name`);//wait to get the data from database
-        console.log('-------data in getGenres: ', response.data);
+        const response = yield axios.get(`/genres/${action.payload}`);//wait to get the data from database
+        console.log('-------response in getGenres: ', response.data);
         yield put({
             type: 'SET_GENRES', // set action type = SET_MOVIES
             payload: response.data // set payload equal datas that we got from database
         })
     } catch (err) {
-        console.log('Error in get genres', err);
+        console.log('Error in GET genres', err);
     }
 }
 
@@ -97,7 +96,7 @@ const details = (state = {}, action) => {
 const genres = (state = [], action) => {
     switch (action.type) {
         case 'SET_GENRES':
-            console.log('sjkdfjksdfjkf-------:', action.payload)
+            console.log('------- data to append:', action.payload)
             return action.payload;
         default:
             return state;

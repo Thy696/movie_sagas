@@ -13,6 +13,8 @@ class Header extends Component {
             <div>
                 <Link to='/'>Home</Link>
                 <Link to='/details'>Details</Link>
+
+
                 {/* <button onClick={this.handleClick}>Clicked</button> */}
             </div>
         )

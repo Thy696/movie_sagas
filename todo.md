@@ -13,7 +13,8 @@
 
 ## Details Page
     [x] show all details including genres
-        [x] Using Saga to get title and description from MovieItem.js componen
+        [x] Using Saga to get title and description from MovieItem.js componend
+        [] Display genres for the selected movie
         [x] Create back to list button which have link to come back Home page
         [] Create Edit button which bring to edit page
             

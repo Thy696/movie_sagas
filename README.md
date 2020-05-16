@@ -15,7 +15,9 @@ Duration: 2 days sprint
     [x] Using HashRouter to able to go to its detail place where have its title and description when the user clicks on the specific poster.
 [x] Display title and description in Details component.
     [x] Using Saga to get title and description from MovieItem.js component.
-
+[] Display genres for each movie from database
+    
+[] Edit select movie title and description
 
 ## Screen Shot
 

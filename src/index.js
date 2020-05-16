@@ -41,13 +41,13 @@ function* getMovies(action) {
 //get detail include title and description from MovieItem
 function* getDetail(action) {
     console.log('in getDetail', action.payload);
-    let searchDetail = action.payload;
+    let forDetail = action.payload;
     //try catch
     try {
-        console.log('data in try getDetail: ', searchDetail);
+        console.log('data in try getDetail: ', forDetail);
         yield put({
             type: 'SET_DETAIL', // set action type = SET_DETAIL
-            payload: searchDetail // set payload equal dispatch that we got from `MovieItem.js`
+            payload: forDetail // set payload equal dispatch that we got from `MovieItem.js`
         })
     } catch (err) {
         console.log('Error in get genres',err);
@@ -88,7 +88,7 @@ const movies = (state = [], action) => {
 const details = (state = [], action) => {
     switch (action.type) {
         case 'SET_DETAIL':
-            console.log('data detail-------:', action.payload)
+            console.log('data detail: ', action.payload)
             return action.payload;
         default:
             return state;

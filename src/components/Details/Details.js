@@ -8,7 +8,8 @@ class Details extends Component {
         this.getDetail();
     }
 
-    //get detaim
+    //get detail and send action type back to index.js via dispatch to reduce
+
     getDetail() {
         console.log('get dispatch send!');
         this.props.dispatch({
@@ -19,7 +20,7 @@ class Details extends Component {
     render() {
         return (
             <div>
-                <h1>Details</h1>
+                {/* <h1>Details</h1> */}
                 {/* {this.props.reduxState.details.map((detail) => {
                     return (
                         <div key={detail.id}>

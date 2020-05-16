@@ -7,11 +7,12 @@ import { connect } from 'react-redux';
 class MovieItem extends Component {
 
     componentDidMount() {
-        console.log('in movie item', this.props);
+        // console.log('in movie item', this.props);
         // console.log('-----', this.props.movieData.title);
     }
 
-    getDetail = () => {
+    //Use sendDetail function to send the title and description to index by dispatch
+    sendDetail = () => { 
         this.props.dispatch({
             type: 'FETCH_DETAIL',
             payload: {
@@ -33,7 +34,7 @@ class MovieItem extends Component {
                         <img
                             src={this.props.movieData.poster}
                             alt={this.props.movieData.title}
-                            onClick={this.getDetail}
+                            onClick={this.sendDetail}
                         />
                     </Link>
                     <p>{this.props.movieData.title}</p>

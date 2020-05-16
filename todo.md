@@ -14,7 +14,7 @@
 ## Details Page
     [x] show all details including genres
         [x] Using Saga to get title and description from MovieItem.js componend
-        [] Display genres for the selected movie
+        [x] Display genres for the selected movie
         [x] Create back to list button which have link to come back Home page
         [x] Create Edit button which bring to edit page
             
@@ -34,4 +34,6 @@
     [] Update this README to include a description of the project.
 
 ## Stretch Goals
-...
+[x]  Display the current values in the input (title) and textarea (description) on the Edit Page
+[x] Display all genres on movie list page. Research array_agg to make this possible.
+

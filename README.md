@@ -15,7 +15,9 @@ Duration: 2 days sprint
     [x] Using HashRouter to able to go to its detail place where have its title and description when the user clicks on the specific poster.
 [x] Display title and description in Details component.
     [x] Using Saga to get title and description from MovieItem.js component.
-[] Display genres for each movie from database
+[x] Display genres for each movie from database
+    [x] Using Saga to get genres from MovieItem.js component.
+
     
 [x] Edit the selected movie's title and description
     [x] Create Edit component
@@ -23,6 +25,9 @@ Duration: 2 days sprint
         [x] Create second inputs field for changing the movie description.
     [x] Create Cancel button to bring user to the Details Page
     [x] Create Save button to update the title and description by sending despatch to Index.js, cross throught reducer and in Details component get changes and append to DOM, also bring the user back to Details page.
+
+[x]   Use array_agg to display all genres on movie list page.
+
 
 ## Screen Shot
 

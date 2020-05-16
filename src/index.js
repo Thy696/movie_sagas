@@ -15,6 +15,7 @@ import axios from 'axios';
 
 // Create the rootSaga generator function
 function* rootSaga() {
+    // find the specific action from another component and give it an function generator
     yield takeEvery('FETCH_MOVIES', getMovies);
     yield takeEvery('FETCH_DETAIL', getDetail);
     yield takeEvery('FETCH_GENRES', getGenres);
@@ -22,53 +23,54 @@ function* rootSaga() {
 
 }
 
-//Using generator function to get data from server
+//Using generator function to get all movies from server
 function* getMovies(action) {
     //try catch
     try {
-        const response = yield axios.get(`/movies`);//wait to get the data from database
+        const response = yield axios.get(`/movies`);//wait to get the data from server
         console.log('data in getMovies: ', response.data);
         yield put({
-            type: 'SET_MOVIES', // set action type = SET_MOVIES
+            type: 'SET_MOVIES', // set this action type = SET_MOVIES
             payload: response.data // set payload equal datas that we got from database
         })
     } catch (err) {
-        console.log(err);
+        console.log(err); // if get data is not success, logging out error
     }
 }
 
-
-
 //get detail include title and description from MovieItem
 function* getDetail(action) {
-    // console.log('in getDetail', action.payload);
-    let forDetail = action.payload;
+    // console.log('--------in getDetail', action.payload);
+    let detail = action.payload;// assigning the data title and description that we got from Movie.js to a variable
     //try catch
     try {
-        // console.log('data in try getDetail: ', forDetail);
+        // console.log('--------in getDetail', action.payload);
         yield put({
             type: 'SET_DETAIL', // set action type = SET_DETAIL
-            payload: forDetail// set payload equal dispatch that we got from `MovieItem.js`
+            payload: detail// set payload equal dispatch that we got from `MovieItem.js`
         })
     } catch (err) {
         console.log('Error in get detail', err);
     }
 }
 
+
+
 function* getGenres(action) {
-    console.log('----->----- in getGenres', action.payload);
+    console.log('--------in getGenres', action.payload);
+    let forGenres = action.payload;
     //try catch
     try {
-        const response = yield axios.get(`/genres/${action.payload}`);//wait to get the data from database
-        console.log('-------response in getGenres: ', response.data);
+        console.log('--------in getGenres', action.payload);
         yield put({
-            type: 'SET_GENRES', // set action type = SET_MOVIES
-            payload: response.data // set payload equal datas that we got from database
+            type: 'SET_GENRES', // set action type = SET_DETAIL
+            payload: forGenres// set payload equal dispatch that we got from `MovieItem.js`
         })
     } catch (err) {
-        console.log('Error in GET genres', err);
+        console.log('Error in get genres', err);
     }
 }
+
 
 function* editDetail(action) {
     // console.log('in getDetail', action.payload);
@@ -93,7 +95,7 @@ const sagaMiddleware = createSagaMiddleware();
 const movies = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIES':
-            return action.payload;
+            return action.payload;//return what we have from server
         default:
             return state;
     }

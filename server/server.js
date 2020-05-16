@@ -14,32 +14,36 @@ app.use(express.static('build'));
 /** ---------- ROUTES ---------- **/
 //GET data from database by axios
 app.get('/movies', (req, res) => {
-    //go to database, get all of data from movies table and order them by id
-    const queryText = `SELECT * FROM movies ORDER BY id`;
+    //go to database, get all of data from movies table join with junction and genres to get the genres for the selected movie
+    const queryText = `SELECT movies.id, movies.title, movies.poster, movies.description ,array_agg(genres.name) as genres  FROM movies 
+    JOIN junction ON movies.id = junction.movie_id
+    JOIN genres ON genres.id = junction.genres_id
+    GROUP BY movies.id
+    ORDER BY movies.title;`;
     pool.query(queryText)
         .then((result) => {
-            res.send(result.rows);//return rows
+            res.send(result.rows);//send rows to client-side
         }).catch(err => {
             console.log('Error on query', err);
         })
 })
 
-app.get(`/genres/:id`, (req, res) => {
-    //go to database, get all of data from movies table and order them by id
-    const titleToGet = req.params.id;
-    console.log('------------> get req.param',titleToGet)
-    const queryText = `SELECT  movies.title as movie , genres.name AS genres FROM movies 
-    JOIN junction ON movies.id = junction.movie_id
-    JOIN genres ON genres.id = junction.genres_id
-    WHERE movies.id = $1;`
-    pool.query(queryText, [titleToGet])
-        .then((result) => {
-                console.log(`Title for genres: ${titleToGet}`)
-            res.send(result.rows);//return rows
-        }).catch(err => {
-            console.log('Error on GET genres', err);
-        })
-})
+// app.get(`/genres/:id`, (req, res) => {
+//     //go to database, get all of data from movies table and order them by id
+//     const titleToGet = req.params.id;
+//     console.log('------------> get req.param',titleToGet)
+//     const queryText = `SELECT array_agg(genres.name) AS genres FROM movies 
+//     JOIN junction ON movies.id = junction.movie_id
+//     JOIN genres ON genres.id = junction.genres_id
+//     WHERE movies.id = $1;`
+//     pool.query(queryText, [titleToGet])
+//         .then((result) => {
+//                 console.log(`Title for genres: ${titleToGet}`)
+//             res.send(result.rows);//return rows
+//         }).catch(err => {
+//             console.log('Error on GET genres', err);
+//         })
+// })
 
 // app.get(`/genres/:name`, (req, res) => {
 //     //go to database, get all of data from movies table and order them by id

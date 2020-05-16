@@ -63,8 +63,8 @@ class Edit extends Component {
                 <p>state: {this.state.detail.description}</p> */}
 
 
-                {/* <p>title: {this.props.reduxState.editDetails.title}</p>
-                <p>description: {this.props.reduxState.editDetails.description}</p> */}
+                <p>title: {this.props.reduxState.details.title}</p>
+                <p>description: {this.props.reduxState.details.description}</p>
 
                 <ul>
                     {

@@ -18,6 +18,18 @@ class Details extends Component {
         this.props.history.push('/edit');
     }
 
+    componentDidMount() {
+        this.getGenres();
+        // this.sendDetail();
+    }
+
+    getGenres = () => {
+        console.log('get dispatch send!');
+        this.props.dispatch({
+            type: 'FETCH_GENRES',
+        })
+    }
+
     render() {
         return (
             <div>
@@ -27,17 +39,16 @@ class Details extends Component {
 
                 <p>{this.state.title}</p>
                 <p>{this.state.description}</p>
-                <ul>
+                <ul>Genres: 
                     {
                         this.props.reduxState.genres.map(item => {
                             return (
-                                <li key={item.genres_id}>
-                                    Movie title:{item.movie}, 
-                                    Genres: {item.genres}</li>
+                                <li key={item}> {item}</li>
                             )
                         })
                     }
                 </ul>
+                {/* <p>genres: {this.props.reduxState.genres}</p> */}
             </div>
         )
     }

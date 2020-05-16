@@ -22,9 +22,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                {/* <Link to='/'>Home</Link> */}
-                {/* <h1>This is home</h1> */}
-                {/* mapping through the array movies that get from index to append list of movies to DOM */}
+                {/* mapping through the array movies that got from index to append list of movies to DOM */}
                 {this.props.reduxState.movies.map((movie) => {
                     return (
                         <div key={movie.id}>

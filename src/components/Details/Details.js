@@ -4,18 +4,29 @@ import { connect } from 'react-redux';
 
 class Details extends Component {
 
+    state = {
+        title: this.props.reduxState.details.title,
+        description: this.props.reduxState.details.description
+    }
+
     handleBack = () => {
         console.log('Back clicked!');
         this.props.history.push('/');
     }
-  
+    handleEdit = () => {
+        console.log('Back clicked!');
+        this.props.history.push('/edit');
+    }
+
     render() {
         return (
             <div>
                 <button onClick={this.handleBack}>Back to list</button>
+                <button onClick={this.handleEdit}>Edit</button>
 
-                <p>{this.props.reduxState.details.title}</p>
-                <p>{this.props.reduxState.details.description}</p>
+
+                <p>{this.state.title}</p>
+                <p>{this.state.description}</p>
                 <ul>
                     {
                         this.props.reduxState.genres.map(item => {

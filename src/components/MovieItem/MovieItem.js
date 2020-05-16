@@ -39,7 +39,7 @@ class MovieItem extends Component {
                  when the user click on this poster  */}
                     <p>{this.props.movieData.id}</p>
 
-                    <Link to='/details'>
+                    <Link to='/detail'>
                         <img
                             src={this.props.movieData.poster}
                             alt={this.props.movieData.title}

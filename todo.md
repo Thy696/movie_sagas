@@ -16,14 +16,14 @@
         [x] Using Saga to get title and description from MovieItem.js componend
         [] Display genres for the selected movie
         [x] Create back to list button which have link to come back Home page
-        [] Create Edit button which bring to edit page
+        [x] Create Edit button which bring to edit page
             
 ## Edit Page
-    [] Create Edit component
-        [] Create first inputs field for changing the movie title of selected movie
-        [] Create second inputs field for changing the movie description.
-    [] Create Cancle button to bring user to the Details Page
-    [] Create Save button to update the title and description in database + bring user to Details page.
+    [x] Create Edit component
+        [x] Create first inputs field for changing the movie title of selected movie
+        [x] Create second inputs field for changing the movie description.
+    [x] Create Cancel button to bring user to the Details Page
+    [x] Create Save button to update the title and description by sending despatch to Index.js, cross throught reducer and in Details component get changes and append to DOM, also bring the user back to Details page. 
 
 ## General Tasks
     [] Invest some time in styling it up!

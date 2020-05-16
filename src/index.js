@@ -18,6 +18,8 @@ function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', getMovies);
     yield takeEvery('FETCH_DETAIL', getDetail);
     yield takeEvery('FETCH_GENRES', getGenres);
+    yield takeEvery('SUBMIT', editDetail);
+
 }
 
 //Using generator function to get data from server
@@ -68,6 +70,21 @@ function* getGenres(action) {
     }
 }
 
+function* editDetail(action) {
+    // console.log('in getDetail', action.payload);
+    let editDetail = action.payload;
+    //try catch
+    try {
+        // console.log('data in try getDetail: ', forDetail);
+        yield put({
+            type: 'EDIT_DETAIL', // set action type = SET_DETAIL
+            payload: editDetail// set payload equal dispatch that we got from `MovieItem.js`
+        })
+    } catch (err) {
+        console.log('Error in edit detail', err);
+    }
+}
+
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
@@ -87,6 +104,9 @@ const details = (state = {}, action) => {
         case 'SET_DETAIL':
             console.log('data detail: ', action.payload)
             return action.payload;
+        case 'EDIT_DETAIL':
+            console.log('data after edit detail: ', action.payload)
+            return action.payload.detail;
         default:
             return state;
     }
@@ -103,12 +123,23 @@ const genres = (state = [], action) => {
     }
 }
 
+// const editDetails = (state = [], action) => {
+//     switch (action.type) {
+//         case 'EDIT_DETAIL':
+//             console.log('data after edit detail: ', action.payload)
+//             return action.payload.detail;
+//         default:
+//             return state;
+//     }
+// }
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movies,
         details,
         genres,
+        // editDetails
 
     }),
     // Add sagaMiddleware to our store

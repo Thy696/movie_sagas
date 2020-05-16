@@ -17,7 +17,12 @@ Duration: 2 days sprint
     [x] Using Saga to get title and description from MovieItem.js component.
 [] Display genres for each movie from database
     
-[] Edit select movie title and description
+[x] Edit the selected movie's title and description
+    [x] Create Edit component
+        [x] Create first inputs field for changing the movie title of selected movie
+        [x] Create second inputs field for changing the movie description.
+    [x] Create Cancel button to bring user to the Details Page
+    [x] Create Save button to update the title and description by sending despatch to Index.js, cross throught reducer and in Details component get changes and append to DOM, also bring the user back to Details page.
 
 ## Screen Shot
 

@@ -3,52 +3,42 @@ import { connect } from 'react-redux';
 
 
 class Details extends Component {
-
+    //create an state to store data that we get from reducer details in index.js
     state = {
         title: this.props.reduxState.details.title,
         description: this.props.reduxState.details.description
     }
-
+    //handle click when user click on Back To List button
     handleBack = () => {
         console.log('Back clicked!');
-        this.props.history.push('/');
+        this.props.history.push('/'); // bring user back to home page
     }
+
+    //handle click when user click on Edit button
     handleEdit = () => {
         console.log('Back clicked!');
-        this.props.history.push('/edit');
-    }
-
-    componentDidMount() {
-        this.getGenres();
-        // this.sendDetail();
-    }
-
-    getGenres = () => {
-        console.log('get dispatch send!');
-        this.props.dispatch({
-            type: 'FETCH_GENRES',
-        })
+        this.props.history.push('/edit'); // bring user to edit page
     }
 
     render() {
         return (
             <div>
+                <h2>Detail</h2>
+                {/* the buttons */}
                 <button onClick={this.handleBack}>Back to list</button>
                 <button onClick={this.handleEdit}>Edit</button>
 
-
                 <p>{this.state.title}</p>
                 <p>{this.state.description}</p>
-                <ul>Genres: 
-                    {
-                        this.props.reduxState.genres.map(item => {
+                <ul>Genres:
+                    {/* //mapping through genres array that we got from reducer genres */}
+                    {this.props.reduxState.genres.map(item => {
                             return (
                                 <li key={item}> {item}</li>
                             )
                         })
                     }
                 </ul>
-                {/* <p>genres: {this.props.reduxState.genres}</p> */}
             </div>
         )
     }

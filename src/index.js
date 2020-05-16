@@ -54,8 +54,6 @@ function* getDetail(action) {
     }
 }
 
-
-
 function* getGenres(action) {
     console.log('--------in getGenres', action.payload);
     let forGenres = action.payload;
@@ -70,7 +68,6 @@ function* getGenres(action) {
         console.log('Error in get genres', err);
     }
 }
-
 
 function* editDetail(action) {
     // console.log('in getDetail', action.payload);
@@ -101,12 +98,13 @@ const movies = (state = [], action) => {
     }
 }
 
+// Used to store detail data 
 const details = (state = {}, action) => {
     switch (action.type) {
-        case 'SET_DETAIL':
+        case 'SET_DETAIL': // if action. type = SET_DETAIL return the data that got from function generator getDetail
             console.log('data detail: ', action.payload)
             return action.payload;
-        case 'EDIT_DETAIL':
+        case 'EDIT_DETAIL':// if action. type = SET_EDIT return the data that got from function generator editDetail
             console.log('data after edit detail: ', action.payload)
             return action.payload.detail;
         default:

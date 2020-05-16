@@ -6,10 +6,10 @@ import { connect } from 'react-redux';
 
 class MovieItem extends Component {
 
-   
+
 
     //Use sendDetail function to send the title, description and genres to index by dispatch
-    sendDetail = () => { 
+    sendDetail = () => {
         this.props.dispatch({
             type: 'FETCH_DETAIL', // action type FETCH_DETAIL to send title and description
             payload: {
@@ -31,7 +31,6 @@ class MovieItem extends Component {
                 <HashRouter>
                     {/* create an Link to bring the user to the Detail page
                  when the user click on this poster  */}
-                    {/* <p>{this.props.movieData.id}</p> */}
                     <p>{this.props.movieData.title}</p>
                     <Link to='/details'>
                         <img
@@ -40,12 +39,12 @@ class MovieItem extends Component {
                             onClick={this.sendDetail}
                         />
                     </Link>
+                    {/* Display genres  */}
                     <p>Genres: {this.props.movieData.genres[0]},{this.props.movieData.genres[1]}</p>
+                    {/* Display description  */}
                     <p>{this.props.movieData.description}</p>
 
                 </HashRouter>
-
-                {/* <h1>{JSON.stringify(this.props.reduxState.movies)}</h1> */}
             </div >
         )
     }

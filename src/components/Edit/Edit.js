@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { withRouter } from 'react-router';
-
-
 
 class Edit extends Component {
-
+    //create an state to store data that we get from reducer details in index.js
     state = {
         detail: {
             title: this.props.reduxState.details.title,
@@ -18,22 +15,13 @@ class Edit extends Component {
         // this.handleSave();
     }
 
+    //Bring the user back to details page when the user click on Cancel button, 
     handleCancel = () => {
         console.log('Back clicked!');
         this.props.history.push('/details');
     }
 
-    handleSave = () => {
-        console.log('Save clicked!');
-        this.props.history.push('/details');
-
-        this.props.dispatch({
-            type: 'SUBMIT',
-            payload : this.state
-        })
-        console.log('---------------> ',this.state)
-    }
-
+    //set current state equal what user type in input field 
     handleChangeFor = (event, property) => {
         console.log('handle change for', property, event.target.value);
         this.setState({
@@ -44,11 +32,27 @@ class Edit extends Component {
         })
     }
 
+    //Bring the user back to details page when the user click on Cancel button and
+    // create a SUBMIT action to submit the changing
+    handleSave = () => {
+        console.log('Save clicked!');
+        // this.props.history.push('/details');
+        this.props.dispatch({
+            type: 'SUBMIT',
+            payload: this.state // set payload = data in state after changing
+        })
+        // console.log('---------------> ', this.state)
+    }
+
+    backToDetail = () => {
+        this.props.history.push('/details');
+
+    }
+
     render() {
         return (
             <div>
-                <p>This is Edit</p>
-
+                <h2>Edit</h2>
                 <input type="text" placeholder="Edit Title"
                     onChange={(event) => this.handleChangeFor(event, 'title')}
                 />
@@ -58,23 +62,20 @@ class Edit extends Component {
 
                 <button onClick={this.handleCancel}>Cancel</button>
                 <button onClick={this.handleSave}>Save</button>
-
-                {/* <p>state: {this.state.detail.title}</p>
-                <p>state: {this.state.detail.description}</p> */}
+                <button onClick={this.backToDetail}>Back To Detail</button>
 
 
                 <p>title: {this.props.reduxState.details.title}</p>
                 <p>description: {this.props.reduxState.details.description}</p>
 
                 <ul>
-                    {
-                        this.props.reduxState.genres.map(item => {
-                            return (
-                                <li key={item.genres_id}>
-                                    Movie title:{item.movie},
-                                    Genres: {item.genres}</li>
-                            )
-                        })
+                    {/* loop through the array genres that we got from reducer genres to display index on DOM */}
+                    {this.props.reduxState.genres.map(item => {
+                        return (
+                            <li key={item}> {item}</li>
+
+                        )
+                    })
                     }
                 </ul>
             </div>

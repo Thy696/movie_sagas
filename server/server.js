@@ -24,43 +24,34 @@ app.get('/movies', (req, res) => {
         })
 })
 
-// app.post('/details' , (req,res) =>{
-//     const newDetail = req.body;
-//     console.log('--------->in req.body:',req.body );
-//     //go to database, get all of data from movies table and order them by id
-//     const queryText = `INSERT INTO "details" ("title", "description") values ($1, $2)  `; 
-//     pool.query(queryText, [newDetail.title, newDetail.description])
-//     .then((result)=>{
-//         console.log('sending this:', result, 'to database.')
-//         res.sendStatus(201);
-//     }).catch(err =>{
-//         console.log('Error on POST detail', err);
-//     })
-// })
+app.get(`/genres/:name`, (req, res) => {
+    //go to database, get all of data from movies table and order them by id
+    const titleToGet = req.body.name;
+    console.log('------------> get req.param',titleToGet)
+    const queryText = `SELECT genres.name AS genrer, movies.title as movie FROM movies 
+    JOIN junction ON movies.id = junction.movie_id
+    JOIN genres ON genres.id = junction.genres_id
+    WHERE movies.title = '$1';`
+    pool.query(queryText, [titleToGet])
+        .then((result) => {
+            console.log(`Title for genres: ${titleToGet}`)
+            res.send(result.rows);//return rows
+        }).catch(err => {
+            console.log('Error on GET genres', err);
+        })
+})
 
-
-// app.get('/details' , (req,res) =>{
+// app.get(`/genres/:name`, (req, res) => {
 //     //go to database, get all of data from movies table and order them by id
-//     const queryText = `SELECT * FROM details ORDER BY id`; 
-//     pool.query(queryText)
-//     .then((result)=>{
-//         res.send(result.rows);//return rows
-//     }).catch(err =>{
-//         console.log('Error on GET details', err);
-//     })
-// })
-
-// app.get(`/genres`, (req, res) => {
-//     //go to database, get all of data from movies table and order them by id
-//     const titleToGet = req.params
-//     console.log('------------> get req.param', req.params)
+//     // const titleToGet = req.params
+//     // console.log('------------> get req.param', req.params)
 //     const queryText = `SELECT genres.name, movies.title FROM movies 
 //     JOIN junction ON movies.id = junction.movie_id
 //     JOIN genres ON genres.id = junction.genres_id
-//     WHERE movies.description = $1;`
-//     pool.query(queryText, [titleToGet.description])
+//     WHERE movies.title = 'Finding Nemo';`
+//     pool.query(queryText)
 //         .then((result) => {
-//             console.log(`Title for genres: ${titleToGet}`)
+//             // console.log(`Title for genres: ${titleToGet}`)
 //             res.send(result.rows);//return rows
 //         }).catch(err => {
 //             console.log('Error on GET genres', err);

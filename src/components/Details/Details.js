@@ -5,52 +5,44 @@ import { connect } from 'react-redux';
 class Details extends Component {
 
     componentDidMount() {
-        this.getDetail();
+        this.getGenres();
     }
 
-    //get detail and send action type back to index.js via dispatch to reduce
-
-    getDetail = () => {
-        console.log('get dispatch send!');
-        this.props.dispatch({
-            type: 'FETCH_DETAIL',
-            
-        })
-    }
 
     handleBack = () =>{
         console.log('Back clicked!');
         this.props.history.push ('/');
     }
 
+
+    getGenres = () => {
+        console.log('get dispatch send!');
+        this.props.dispatch({
+            type: 'FETCH_GENRES',
+            
+        })
+    }
+
     render() {
         return (
             <div>
                 {/* <h1>Details</h1> */}
-                {/* {this.props.reduxState.details.map((detail) => {
-                    return (
-                        <div key={detail.id}>
-                            <p>{detail.title}</p>
-                            <p>{detail.description}</p>
-
-                        </div>
-                    )
-                })} */}
+                
                 {/* <ul>
                     {this.props.reduxState.genres.map((item) =>
                         <li key={item.id}>Movie title: {item.title}, Genres: {item.name}</li>
 
                     )}
                 </ul> */}
-                {/* <ul>
+                <ul>
                     {
                         this.props.reduxState.genres.map(item => {
                             return (
-                                <li key={item.movies_id}>Movie title:{item.title} Genres: {item.name}</li>
+                                <li key={item.genres_id}>Movie title:{item.title}, Genres: {item.name}</li>
                             )
                         })
                     }
-                </ul> */}
+                </ul>
                 <button onClick = {this.handleBack}>Back to list</button>
                 <p>{this.props.reduxState.details.title}</p>
                 <p>{this.props.reduxState.details.description}</p>

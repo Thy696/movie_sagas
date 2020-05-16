@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 class Details extends Component {
 
     componentDidMount() {
-        this.getDetail(); // run the GET request
+        this.getDetail();
     }
 
-    //GET request and send action type back index.js via dispatch 
+    //get detaim
     getDetail() {
         console.log('get dispatch send!');
         this.props.dispatch({

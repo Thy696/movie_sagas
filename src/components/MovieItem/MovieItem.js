@@ -33,7 +33,7 @@ class MovieItem extends Component {
                         <img
                             src={this.props.movieData.poster}
                             alt={this.props.movieData.title}
-                            onClick={this.addData}
+                            onClick={this.getDetail}
                         />
                     </Link>
                     <p>{this.props.movieData.title}</p>

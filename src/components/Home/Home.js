@@ -13,7 +13,7 @@ class Home extends Component {
     //GET request and send action type back index.js via dispatch 
     getMovies() {
         this.props.dispatch({
-            type: 'get_movies',
+            type: 'FETCH_MOVIES',
         })
     }
     render() {
@@ -28,9 +28,7 @@ class Home extends Component {
                             <MovieItem // Connnect MovieItem component
                             movieData = {movie} //send the data parameter to MovieItem 
                             />
-
                         </div>
-
                     )
                 })}
                 {/* <h1>{JSON.stringify(this.props.reduxState.movies)}</h1> */}

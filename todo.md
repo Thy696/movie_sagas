@@ -9,7 +9,7 @@
         [x] Using HashRouter to able to moving between components with links
         [x] Using Saga to get data from database
         [x] Mapping through the data that got from Saga GET request
-        [] Handle click for each movie item to able to go to it's details page
+        [x] Handle click for each movie item to able to go to it's details page
 
 ## Details Page
     [] show all details including genres

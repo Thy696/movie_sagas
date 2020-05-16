@@ -10,20 +10,24 @@ import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
 // Import saga takeEvery and put
-import {takeEvery, put} from 'redux-saga/effects'
+import { takeEvery, put } from 'redux-saga/effects'
 import axios from 'axios';
 
 // Create the rootSaga generator function
 function* rootSaga() {
-    yield takeEvery('get_movies', getMovies); 
+    yield takeEvery('FETCH_MOVIES', getMovies);
+    yield takeEvery('FETCH_DETAIL', getDetail); 
+    // yield takeEvery('FETCH_GENRES', getGenres);
+
+
+
 }
 
 //Using generator function to get data from server
-function* getMovies(action) { 
-    console.log('-----> in getMovie', action.payload);
+function* getMovies(action) {
     //try catch
     try {
-        const response = yield axios.get(`/movies`, action.payload);//wait to get the data from database
+        const response = yield axios.get(`/movies`);//wait to get the data from database
         console.log('data in getMovies: ', response.data);
         yield put({
             type: 'SET_MOVIES', // set action type = SET_MOVIES
@@ -33,6 +37,39 @@ function* getMovies(action) {
         console.log(err);
     }
 }
+
+//get detail include title and description from MovieItem
+function* getDetail(action) {
+    console.log('in getDetail', action.payload);
+    let searchDetail = action.payload;
+    //try catch
+    try {
+        console.log('data in try getDetail: ', searchDetail);
+        yield put({
+            type: 'SET_DETAIL', // set action type = SET_DETAIL
+            payload: searchDetail // set payload equal dispatch that we got from `MovieItem.js`
+        })
+    } catch (err) {
+        console.log('Error in get genres',err);
+    }
+}
+
+// function* getGenres(action) {
+//     console.log('----->----- in getGenres', action.payload);
+//     let searchDetail = action.payload;
+//     //try catch
+//     try {
+//         const response = yield axios.get(`/genres`, searchDetail);//wait to get the data from database
+//         console.log('-------data in getGenres: ', searchDetail);
+//         yield put({
+//             type: 'SET_GENRES', // set action type = SET_MOVIES
+//             payload: searchDetail // set payload equal datas that we got from database
+//         })
+//     } catch (err) {
+//         console.log('Error in get genres',err);
+//     }
+// }
+
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
@@ -48,20 +85,33 @@ const movies = (state = [], action) => {
 }
 
 // Used to store the movie genres
-const genres = (state = [], action) => {
+const details = (state = [], action) => {
     switch (action.type) {
-        case 'SET_GENRES':
+        case 'SET_DETAIL':
+            console.log('data detail-------:', action.payload)
             return action.payload;
         default:
             return state;
     }
 }
 
+// Used to store the movie genres
+// const genres = (state = [], action) => {
+//     switch (action.type) {
+//         case 'SET_GENRES':
+//             console.log('sjkdfjksdfjkf-------:', action.payload)
+//             return action.payload;
+//         default:
+//             return state;
+//     }
+// }
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movies,
-        genres,
+        // genres,
+        details,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

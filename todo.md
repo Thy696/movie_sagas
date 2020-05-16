@@ -36,4 +36,5 @@
 ## Stretch Goals
 [x]  Display the current values in the input (title) and textarea (description) on the Edit Page
 [x] Display all genres on movie list page. Research array_agg to make this possible.
+[x]  Move sagas and reducers out of your index.js and into separate files (ideally in src/redux/reducers and src/redux/sagas folders).
 

@@ -6,10 +6,6 @@ import { connect } from 'react-redux';
 
 class MovieItem extends Component {
 
-    componentDidMount() {
-        // console.log('in movie item', this.props);
-        // console.log('-----', this.props.movieData.title);
-    }
 
     //Use sendDetail function to send the title and description to index by dispatch
     sendDetail = () => { 

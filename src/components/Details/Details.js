@@ -10,11 +10,17 @@ class Details extends Component {
 
     //get detail and send action type back to index.js via dispatch to reduce
 
-    getDetail() {
+    getDetail = () => {
         console.log('get dispatch send!');
         this.props.dispatch({
             type: 'FETCH_DETAIL',
+            
         })
+    }
+
+    handleBack = () =>{
+        console.log('Back clicked!');
+        this.props.history.push ('/');
     }
 
     render() {
@@ -45,6 +51,7 @@ class Details extends Component {
                         })
                     }
                 </ul> */}
+                <button onClick = {this.handleBack}>Back to list</button>
                 <p>{this.props.reduxState.details.title}</p>
                 <p>{this.props.reduxState.details.description}</p>
 

@@ -4,7 +4,7 @@
 
 
 ## Home/ List Page
-    [] Display all of the movie in DOM.
+    [x] Display all of the movie in DOM.
         [x] Create components (Home/ListPage, Detail)
         [x] Using HashRouter to able to moving between components with links
         [x] Using Saga to get data from database
@@ -12,9 +12,9 @@
         [x] Handle click for each movie item to able to go to it's details page
 
 ## Details Page
-    [] show all details including genres
-        [] Using Saga to get data from database
-        [] Create back to list button which have link to come back Home page
+    [x] show all details including genres
+        [x] Using Saga to get title and description from MovieItem.js componen
+        [x] Create back to list button which have link to come back Home page
         [] Create Edit button which bring to edit page
             
 ## Edit Page

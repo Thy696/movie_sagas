@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 
+
 class Details extends Component {
     //create an state to store data that we get from reducer details in index.js
     state = {
@@ -33,10 +34,10 @@ class Details extends Component {
                 <ul>Genres:
                     {/* //mapping through genres array that we got from reducer genres */}
                     {this.props.reduxState.genres.map(item => {
-                            return (
-                                <li key={item}> {item}</li>
-                            )
-                        })
+                        return (
+                            <li key={item}> {item}</li>
+                        )
+                    })
                     }
                 </ul>
             </div>

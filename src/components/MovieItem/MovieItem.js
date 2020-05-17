@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, HashRouter, Switch, Route } from 'react-router-dom';
+import { Link, HashRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class MovieItem extends Component {
@@ -30,7 +30,7 @@ class MovieItem extends Component {
 
     render() {
         return (
-            <div className="movie_item">
+            <div className="movie_item" >
                 <HashRouter>
                     {/* create an Link to bring the user to the Detail page
                  when the user click on this poster  */}
@@ -46,9 +46,9 @@ class MovieItem extends Component {
                     {/* Display genres  */}
                     <div className="genres_list">Genres:
                     {/* //mapping through genres array that we got from reducer genres */}
-                        {this.props.movieData.genres.map(item => {
+                        {this.props.movieData.genres.map(genres => {
                             return (
-                                <span key={item}> {item}</span>
+                                <span key={genres}> {genres}</span>
                             )
                         })
                         }

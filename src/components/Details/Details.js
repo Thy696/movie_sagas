@@ -56,7 +56,7 @@ class Details extends Component {
                         <h3>{this.state.title}</h3>
 
                         <div>
-                    {/* //mapping through genres array that we got from reducer genres */}
+                            {/* //mapping through genres array that we got from reducer genres */}
                             {this.props.reduxState.genres.map(item => {
                                 return (
                                     <span key={item}>{item} </span>

@@ -7,8 +7,8 @@ class Edit extends Component {
     //create an state to store data that we get from reducer details in index.js
     state = {
         detail: {
-            title: this.props.reduxState.details.title,
-            description: this.props.reduxState.details.description
+            title: '',
+            description: ''
         },
         cancelButton: true,
         saveButton: true,
@@ -99,7 +99,6 @@ class Edit extends Component {
                         {/* <button onClick={this.handleSave}>Save</button> */}
                         <button onClick={this.backToDetail}>Back To Detail</button>
 
-
                         <h3>Title: {this.props.reduxState.details.title}</h3>
 
                         {/* loop through the array genres that we got from reducer genres to display index on DOM */}
@@ -110,9 +109,6 @@ class Edit extends Component {
                         })
                         }
                         <p>Description: {this.props.reduxState.details.description}</p>
-
-
-
                     </div>
                 </Paper>
             </div>

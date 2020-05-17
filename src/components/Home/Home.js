@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MovieItem from '../MovieItem/MovieItem'
 
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 // import Box from '@material-ui/core/Box';
@@ -57,12 +57,12 @@ class Home extends Component {
         return (
             <div>
                 {/* mapping through the array movies that got from index to append list of movies to DOM */}
-                <div className = "list_movie">
+                <div className="list_movie">
                     <Grid>
-                        <Grid container justify="center" >
-                            {this.props.reduxState.movies.map((movie) => (
-                                <Grid key={movie} item xs={3} >
-                                    <div className="card_movie">
+                        <Grid container justify="left" >
+                            {this.props.reduxState.movies.map((movie, index) => (
+                                <Grid item xs={3}  >
+                                    <div className="card_movie" key={index.id}>
                                         <Paper>
                                             <MovieItem // Connnect MovieItem component
                                                 movieData={movie} //send the data parameter to MovieItem 

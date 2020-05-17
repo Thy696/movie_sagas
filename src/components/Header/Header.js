@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 // import {withRouter} from 'react-router';
 
 class Header extends Component {
@@ -16,8 +16,7 @@ class Header extends Component {
                 <h1 onClick = {this.handleClick}
                 className = "header_text"
                 >Thy's movie list</h1>
-
-                {/* <Link to='/'>Home</Link> */}
+                <input></input>
             </div>
         )
     }

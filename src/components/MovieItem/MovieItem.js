@@ -8,7 +8,6 @@ class MovieItem extends Component {
         genres: '',
     }
 
-
     //Use sendDetail function to send the title, description and genres to index by dispatch
     sendDetail = () => {
         this.props.dispatch({
@@ -24,9 +23,6 @@ class MovieItem extends Component {
             payload: this.props.movieData.genres,
         })
     }
-
-
-
 
     render() {
         return (

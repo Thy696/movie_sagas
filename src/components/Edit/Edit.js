@@ -45,7 +45,7 @@ class Edit extends Component {
     }
 
     backToDetail = () => {
-        this.props.history.push('/details');
+        this.props.history.push('/details/:id');
 
     }
 

@@ -10,7 +10,7 @@ export function* rootSaga() {
     yield takeEvery('FETCH_DETAIL', getDetail);
     yield takeEvery('FETCH_GENRES', getGenres);
     yield takeEvery('SUBMIT', editDetail);
-
+    yield takeEvery('ADD_NEW_GENRES', addRendes);
 }
 
 export function* getMovies(action) {
@@ -72,3 +72,15 @@ export function* editDetail(action) {
     }
 }
 
+export function* addRendes(action) {
+    //try catch
+    try {
+        yield axios.post(`/genres`, action.payload);//wait to get the data from server
+        yield put({
+            type: 'FETCH_NEW_GENRES', // set action type = SET_DETAIL
+        })
+    } catch (err) {
+        console.log('Error in add genres', err);
+    }
+      
+}

@@ -35,12 +35,12 @@ export const genres = (state = [], action) => {
     }
 }
 
-// const editDetails = (state = [], action) => {
-//     switch (action.type) {
-//         case 'EDIT_DETAIL':
-//             console.log('data after edit detail: ', action.payload)
-//             return action.payload.detail;
-//         default:
-//             return state;
-//     }
-// }
+export const addRendes = (state = [], action) => {
+    switch (action.type) {
+        case 'FETCH_NEW_GENRES':
+            console.log('data after add genres: ', action.payload)
+            return action.payload;
+        default:
+            return state;
+    }
+}

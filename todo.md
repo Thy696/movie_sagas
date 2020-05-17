@@ -37,4 +37,4 @@
 [x]  Display the current values in the input (title) and textarea (description) on the Edit Page
 [x] Display all genres on movie list page. Research array_agg to make this possible.
 [x]  Move sagas and reducers out of your index.js and into separate files (ideally in src/redux/reducers and src/redux/sagas folders).
-
+[] Allow the user to refresh the details or edit page. The url for the details page would be something like /details/1 for movie with id of 1. Research react router params.

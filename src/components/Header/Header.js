@@ -9,6 +9,7 @@ class Header extends Component {
 
     // }
     render() {
+
         return (
             <div>
                 <Link to='/'>Home</Link>
@@ -16,7 +17,6 @@ class Header extends Component {
                 <Link to='/edit'>Edit</Link>
 
 
-                {/* <button onClick={this.handleClick}>Clicked</button> */}
             </div>
         )
     }

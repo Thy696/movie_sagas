@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Link, HashRouter } from 'react-router-dom';
+import { Link, HashRouter, Switch,Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-
 
 class MovieItem extends Component {
 
+    state = {
+        genres:'',
+    }
 
 
     //Use sendDetail function to send the title, description and genres to index by dispatch
@@ -24,6 +25,22 @@ class MovieItem extends Component {
         })
     }
 
+    //set current state equal what user type in input field 
+    handleChangeFor = (event) => {
+        console.log('handle change for', event.target.value);
+        this.setState({
+            genres: event.target.value
+        })
+    }
+
+    handleAdd = () =>{
+        console.log('Added!')
+        this.props.dispatch({
+            type: "ADD_NEW_GENRES",
+            payload: this.state
+        })
+    }
+
 
     render() {
         return (
@@ -38,12 +55,16 @@ class MovieItem extends Component {
                             alt={this.props.movieData.title}
                             onClick={this.sendDetail}
                         />
-                    </Link>
+                    </Link><br />
+                    <input type = "text" placeholder = "new a genres"
+                    onChange = {this.handleChangeFor}
+                    />
+                    <button onClick = {this.handleAdd}>Add</button>                    
                     {/* Display genres  */}
                     <p>Genres: {this.props.movieData.genres[0]},{this.props.movieData.genres[1]}</p>
                     {/* Display description  */}
                     <p>{this.props.movieData.description}</p>
-
+                    
                 </HashRouter>
             </div >
         )

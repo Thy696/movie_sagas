@@ -28,6 +28,17 @@ app.get('/movies', (req, res) => {
         })
 })
 
+// app.post('/genres', (req, res) => {
+//     let query = `INSERT INTO "genres" ("name")
+//                  VALUES ($1)`;
+//     pool.query(query, [req.body.name]).then( result => {
+//       res.sendStatus(200);
+//     }).catch(err => {
+//       console.log(err);
+//       res.sendStatus(500);
+//     })
+//   })
+
 // app.get(`/genres/:id`, (req, res) => {
 //     //go to database, get all of data from movies table and order them by id
 //     const titleToGet = req.params.id;
@@ -45,22 +56,7 @@ app.get('/movies', (req, res) => {
 //         })
 // })
 
-// app.get(`/genres/:name`, (req, res) => {
-//     //go to database, get all of data from movies table and order them by id
-//     // const titleToGet = req.params
-//     // console.log('------------> get req.param', req.params)
-//     const queryText = `SELECT genres.name, movies.title FROM movies 
-//     JOIN junction ON movies.id = junction.movie_id
-//     JOIN genres ON genres.id = junction.genres_id
-//     WHERE movies.title = 'Finding Nemo';`
-//     pool.query(queryText)
-//         .then((result) => {
-//             // console.log(`Title for genres: ${titleToGet}`)
-//             res.send(result.rows);//return rows
-//         }).catch(err => {
-//             console.log('Error on GET genres', err);
-//         })
-// })
+
 /** ---------- START SERVER ---------- **/
 app.listen(port, function () {
     console.log('Listening on port: ', port);

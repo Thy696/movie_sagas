@@ -17,17 +17,16 @@ class Home extends Component {
         })
     }
 
-
-
     render() {
         return (
             <div>
+          
                 {/* mapping through the array movies that got from index to append list of movies to DOM */}
                 {this.props.reduxState.movies.map((movie) => {
                     return (
                         <div key={movie.id}>
                             <MovieItem // Connnect MovieItem component
-                            movieData = {movie} //send the data parameter to MovieItem 
+                                movieData={movie} //send the data parameter to MovieItem 
                             />
                         </div>
                     )

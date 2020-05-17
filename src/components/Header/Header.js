@@ -17,7 +17,6 @@ class Header extends Component {
                 className = "header_text"
                 >Thy's movie list</h1>
 
-                {/* <Link to='/'>Home</Link> */}
             </div>
         )
     }

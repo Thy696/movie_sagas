@@ -11,8 +11,11 @@ export function* rootSaga() {
     yield takeEvery('FETCH_GENRES', getGenres);
     yield takeEvery('SUBMIT', editDetail);
     yield takeEvery('ADD_NEW_GENRES', addRendes);
+    yield takeEvery('SEARCH', searchMovie);
+
 }
 
+//send the get request to server to get data movies from database
 export function* getMovies(action) {
     //try catch
     try {
@@ -27,6 +30,7 @@ export function* getMovies(action) {
     }
 }
 
+//set data title, description from MoviesItem.js
 export function* getDetail(action) {
     // console.log('--------in getDetail', action.payload);
     let detail = action.payload;// assigning the data title and description that we got from Movie.js to a variable
@@ -42,6 +46,7 @@ export function* getDetail(action) {
     }
 }
 
+//send the get request to server to get data movies from database
 export function* getGenres(action) {
     console.log('--------in getGenres', action.payload);
     let forGenres = action.payload;
@@ -72,6 +77,7 @@ export function* editDetail(action) {
     }
 }
 
+//send the post request to server to add new genres to database
 export function* addRendes(action) {
     //try catch
     try {
@@ -82,5 +88,22 @@ export function* addRendes(action) {
     } catch (err) {
         console.log('Error in add genres', err);
     }
-      
+}
+
+//send the get request to server to get data that we searching from database
+export function* searchMovie(action) {
+    // console.log('-----> in searchMovie', action.payload);
+    //try catch
+    let searchValue = action.payload;
+    // console.log('------->in searchMovie:', searchValue);
+    try {
+        const response = yield axios.get(`/search/${searchValue}`);//wait to get the data from server
+        // console.log('------->in searchMovie:', searchValue);
+        yield put({
+            type: 'FOUND_MOVIE', // set action type = FOUND_MOVIE
+            payload: response.data
+        })
+    } catch (err) {
+        console.log('Error in searchMovie', err);
+    }
 }

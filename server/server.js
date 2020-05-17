@@ -12,7 +12,7 @@ app.use(bodyParser.json()); // needed for angular requests
 app.use(express.static('build'));
 
 /** ---------- ROUTES ---------- **/
-//GET data from database by axios
+//GET data movies from database by axios
 app.get('/movies', (req, res) => {
     //go to database, get all of data from movies table join with junction and genres to get the genres for the selected movie
     const queryText = `SELECT movies.id, movies.title, movies.poster, movies.description ,array_agg(genres.name) as genres  FROM movies 
@@ -28,6 +28,24 @@ app.get('/movies', (req, res) => {
         })
 })
 
+//GET data movies that we are searching from database by axios
+app.get('/search/:searchValue', (req, res) => {
+    console.log('in /search GET:', req.params.searchValue);
+    let searchValue = req.params.searchValue;
+    const queryText =(`SELECT "title","poster", "description" FROM "movies" 
+    WHERE "title" LIKE '%${searchValue}%';`)
+    pool.query(queryText)
+      .then((response) => {
+        res.send(response.rows);
+      }).catch((err) => {
+        console.log(err);
+        res.send(500);
+      });//end axios
+    // res.send(req.params.searchValue);
+  });//end get
+
+
+//POST new genres to database by axios
 // app.post('/genres', (req, res) => {
 //     let query = `INSERT INTO "genres" ("name")
 //                  VALUES ($1)`;
@@ -39,6 +57,7 @@ app.get('/movies', (req, res) => {
 //     })
 //   })
 
+//GET new genres that we added from database by axios after post
 // app.get(`/genres/:id`, (req, res) => {
 //     //go to database, get all of data from movies table and order them by id
 //     const titleToGet = req.params.id;

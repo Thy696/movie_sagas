@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Link, HashRouter, Switch,Route } from 'react-router-dom';
+import { Link, HashRouter, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class MovieItem extends Component {
 
     state = {
-        genres:'',
+        genres: '',
     }
 
 
@@ -25,21 +25,7 @@ class MovieItem extends Component {
         })
     }
 
-    //set current state equal what user type in input field 
-    handleChangeFor = (event) => {
-        console.log('handle change for', event.target.value);
-        this.setState({
-            genres: event.target.value
-        })
-    }
 
-    handleAdd = () =>{
-        console.log('Added!')
-        this.props.dispatch({
-            type: "ADD_NEW_GENRES",
-            payload: this.state
-        })
-    }
 
 
     render() {
@@ -48,7 +34,6 @@ class MovieItem extends Component {
                 <HashRouter>
                     {/* create an Link to bring the user to the Detail page
                  when the user click on this poster  */}
-                    <p>{this.props.movieData.title}</p>
                     <Link to='/details'>
                         <img
                             src={this.props.movieData.poster}
@@ -56,15 +41,21 @@ class MovieItem extends Component {
                             onClick={this.sendDetail}
                         />
                     </Link><br />
-                    <input type = "text" placeholder = "new a genres"
-                    onChange = {this.handleChangeFor}
-                    />
-                    <button onClick = {this.handleAdd}>Add</button>                    
+                    <p>{this.props.movieData.title}</p>
+
                     {/* Display genres  */}
-                    <p>Genres: {this.props.movieData.genres[0]},{this.props.movieData.genres[1]}</p>
+                    <div className="genres_list">Genres:
+                    {/* //mapping through genres array that we got from reducer genres */}
+                        {this.props.movieData.genres.map(item => {
+                            return (
+                                <span key={item}> {item}</span>
+                            )
+                        })
+                        }
+                    </div>
                     {/* Display description  */}
                     <p>{this.props.movieData.description}</p>
-                    
+
                 </HashRouter>
             </div >
         )

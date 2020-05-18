@@ -10,7 +10,7 @@ export const movies = (state = [], action) => {
     }
 }
 
-// Used to store detail data 
+// Used to store details that we get from Saga generator function 
 export const details = (state = {}, action) => {
     switch (action.type) {
         case 'SET_DETAIL': // if action. type = SET_DETAIL return the data that got from function generator getDetail
@@ -24,7 +24,7 @@ export const details = (state = {}, action) => {
     }
 }
 
-// Used to store the movie genres
+// Used to store genres that we get from Saga generator function 
 export const genres = (state = [], action) => {
     switch (action.type) {
         case 'SET_GENRES':
@@ -35,6 +35,7 @@ export const genres = (state = [], action) => {
     }
 }
 
+// Used to store new genres that we get databasae 
 export const addRendes = (state = [], action) => {
     switch (action.type) {
         case 'FETCH_NEW_GENRES':
@@ -44,3 +45,13 @@ export const addRendes = (state = [], action) => {
             return state;
     }
 }
+
+// Used to store movies that we search from databasae 
+export const search = (state = [], action) => {
+    // console.log('in giphyReducer', action.payload);
+    if (action.type === 'FOUND_MOVIE') {
+        state = action.payload
+        return state;
+    }
+    return state;
+};//end reducer

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
+// import queryString from 'query-string';
 
 
 
@@ -12,6 +13,17 @@ class Details extends Component {
         title: this.props.reduxState.details.title,
         description: this.props.reduxState.details.description
     }
+
+    // componentDidMount() {
+    //     const params = new URLSearchParams(this.props.location.search);
+    //     // params.get("details");
+    //     console.log("--------------------id detail", params);
+    //     const values = queryString.parse(this.props.location.search);
+    //     console.log(values.details);
+
+    //     // const 
+    // }
+
     //handle click when user click on Back To List button
     handleBack = () => {
         console.log('Back clicked!');
@@ -32,6 +44,7 @@ class Details extends Component {
         })
     }
 
+    //handle add new genres to 
     handleAdd = () => {
         console.log('Added!')
         this.props.dispatch({
@@ -39,8 +52,6 @@ class Details extends Component {
             payload: this.state
         })
     }
-
-
 
     render() {
 
@@ -65,16 +76,12 @@ class Details extends Component {
                             }
                         </div>
                         <p>{this.state.description}</p>
-
                         <input type="text" placeholder="new a genres"
                             onChange={this.handleChangeFor}
                         />
                         <button onClick={this.handleAdd}>Add</button>
-
                     </div>
-
                 </Paper>
-
             </div>
         )
     }

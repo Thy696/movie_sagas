@@ -63,7 +63,7 @@ class Home extends Component {
 
         return (
             <div>
-                <span className="searchIcon"><SearchIcon /></span>
+                <SearchIcon />
                 <Input type="text" placeholder="Search movie"
                     onChange={this.handleChangeFor}
                     onKeyPress={this.keyPressed}

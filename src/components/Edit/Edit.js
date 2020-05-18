@@ -16,10 +16,6 @@ class Edit extends Component {
             title: this.props.reduxState.details.title,
             description: this.props.reduxState.details.description
         },
-        cancelButton: true,
-        saveButton: true,
-        inputTitle: true,
-        inputDescription: true
     }
 
     componentDidMount() {
@@ -53,14 +49,6 @@ class Edit extends Component {
             type: 'SUBMIT',
             payload: this.state // set payload = data in state after changing
         })
-        //set save and cancel button to false to hide save button and cancel button after the user click submit
-        this.setState({
-            // descriptionVisible: true // when the picture have been click,descriptionVisible will switch to true and show it up 
-            cancelButton: !this.state.cancelButton, // when the picture have been click,descriptionVisible will switch to true and show it up 
-            saveButton: !this.state.saveButton, // when the picture have been click,descriptionVisible will switch to true and show it up 
-            inputTitle: !this.state.inputTitle,
-            inputDescription: !this.state.inputDescription
-        })
         this.clearInputField();
     }
 
@@ -76,43 +64,9 @@ class Edit extends Component {
             },
         })
     }
-    
+
 
     render() {
-        const classes = this.styles;
-
-
-        // use the if conditions to hide cancel button, save button, title input, description input if the user click on save button
-        let cancelButton;
-        let saveButton;
-        let titleInput;
-        let descriptionInput;
-        if (this.state.cancelButton) {
-            cancelButton = (<Button variant="contained" onClick={this.handleCancel}>Cancel</Button>)
-        }
-        if (this.state.saveButton) {
-            saveButton = (<Button variant="contained" onClick={this.handleSave}>Save</Button>)
-        }
-        if (this.state.inputTitle) {
-            titleInput = (<TextField type="text" placeholder="Edit Title"
-                value={this.state.detail.title}
-                variant="outlined"
-                label="Title"
-                onChange={(event) => this.handleChangeFor(event, 'title')} />)
-        }
-        if (this.state.inputDescription) {
-            descriptionInput = (<TextField type="text" placeholder="Edit Description"
-                variant="outlined"
-                value={this.state.detail.description}
-                id="outlined-multiline-static"
-                label="Description"
-                multiline
-                rows={10}
-                variant="outlined"
-                onChange={(event) => this.handleChangeFor(event, 'description')} />)
-        }
-
-
 
         return (
 
@@ -120,14 +74,24 @@ class Edit extends Component {
                 <Paper elevation={3}>
                     <div className="edit_content">
                         <div className="edit_item">
-                            {titleInput}
+                            <TextField type="text" placeholder="Edit Title"
+                                value={this.state.detail.title}
+                                variant="outlined"
+                                label="Title"
+                                onChange={(event) => this.handleChangeFor(event, 'title')} />                            <br />
                             <br />
+                            <TextField type="text" placeholder="Edit Description"
+                                variant="outlined"
+                                value={this.state.detail.description}
+                                id="outlined-multiline-static"
+                                label="Description"
+                                multiline
+                                rows={10}
+                                variant="outlined"
+                                onChange={(event) => this.handleChangeFor(event, 'description')} />                            <br />
                             <br />
-                            {descriptionInput}
-                            <br />
-                            <br />
-                            {cancelButton}
-                            {saveButton}
+                            <Button variant="contained" onClick={this.handleCancel}>Cancel</Button>
+                            <Button variant="contained" onClick={this.handleSave}>Save</Button>
                         </div>
                         <br />
                         <br />

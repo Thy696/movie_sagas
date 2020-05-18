@@ -64,7 +64,7 @@ class Details extends Component {
                         <Button variant="contained" onClick={this.handleBack}>Back to list</Button>
                         <Button variant="contained" onClick={this.handleEdit}>Edit</Button>
 
-                        <h3>{this.state.title}</h3>
+                        <h3>Title: {this.state.title}</h3>
 
                         <div>
                             {/* //mapping through genres array that we got from reducer genres */}
@@ -75,7 +75,7 @@ class Details extends Component {
                             })
                             }
                         </div>
-                        <p>{this.state.description}</p>
+                        <p>Description: {this.state.description}</p>
                         <input type="text" placeholder="new a genres"
                             onChange={this.handleChangeFor}
                         />

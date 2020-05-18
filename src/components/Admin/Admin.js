@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Genres from '../Genres/Genres';
+
 import Input from '@material-ui/core/Input';
 
 class Admin extends Component {
@@ -7,18 +10,30 @@ class Admin extends Component {
             username: '',
             password: ''
         },
-        addGenresForm: false
+        addGenresForm: false,
+        genres:'',
     }
-    keyPressed = (event) => {
-        if (event.key === "Enter") {
-            this.props.handleSubmit()
-        }
+    // keyPressed = (event) => {
+    //     if (event.key === "Enter") {
+    //         this.handleSubmit();
+    //     }
+    // }
+
+    componentDidMount() {
+        this.getGenres(); // run the GET request
     }
 
+    //GET request and send action type back index.js via dispatch 
+    getGenres() {
+        this.props.dispatch({
+            type: 'GET_GENRES_FROM_DATABASE',
+        })
+    }
+//---------------------------Login form------------------------------------------------------------------------
     handleChangeFor = (event, property) => { //create handleChangeFor function and call it when the input field changes
         this.setState({
             loginForm: {
-                ...this.state.loginForm, //set currentPicture object is what it is
+                ...this.state.loginForm, //set loginForm object is what it is
                 [property]: event.target.value, // change it after the user type in input field
             }
         });
@@ -26,8 +41,8 @@ class Admin extends Component {
 
     handleSubmit = (event) => { // called when the add new picture is pressed
         console.log('submit clicked!');
-        if (this.state.loginForm.username === '') {
-            alert("Please, add an url into the form!")
+        if (this.state.loginForm.username === '' || this.state.loginForm.password === '') {
+            alert("Make sure you added your username and password!")
         } else {
             this.clearUrlFields();
             //set add new genres form to be true when the user click on login button 
@@ -46,6 +61,29 @@ class Admin extends Component {
             },
         });
     }
+//---------------------------Add new genres form------------------------------------------------------------------------
+
+handleGenresChange = (event) => { //create handleChangeFor function and call it when the input field changes
+    this.setState({
+        genres: event.target.value, // change it after the user type in input field
+    });
+}
+
+handleAdd = (event) => { // called when the add new picture is pressed
+    console.log('Add clicked!');
+    if (this.state.genres === '') {
+        alert("Please add an genres in input field!")
+    } else {
+        this.clearUrlFields();
+        this.props.dispatch({
+            type: 'ADD_NEW_GENRES',
+            payload: this.state.genres
+        })
+    }
+}
+
+//---------------------------Remove genres------------------------------------------------------------------------
+
 
     render() {
         let addNewGenresForm;
@@ -53,16 +91,27 @@ class Admin extends Component {
             addNewGenresForm = (
                 <div>
                     <form className="genresForm form">
-                        <input type="text" placeholder="Add new genres" />
-                        <button>Add</button>
+                        <input type="text" placeholder="Add new genres" 
+                        onChange = {this.handleGenresChange}/>
+                        <button onClick = {this.handleAdd}>Add</button>
                     </form>
+                    <div className = "genres_admin">
+                        <h5>Genres list:</h5>
+                        {this.props.reduxState.genresDatabase.map(genresDatabase => {
+                            return (
+                                <div key={genresDatabase.id}>
+                                    <Genres 
+                                    genresDatabase = {genresDatabase}
 
+                                    />
+                                </div>
+                            )
+                        })
+                        }
+                    </div>
                 </div>
             )
         }
-
-
-
 
         return (
             <div >
@@ -83,8 +132,7 @@ class Admin extends Component {
                         onChange={(event) => this.handleChangeFor(event, 'password')}
                         className="input input-password"
                         id="mui-theme-provider-standard-input"
-                        onKeyPress={this.keyPressed}
-
+                    // onKeyPress={this.keyPressed}
                     /><br />
 
                     <button variant="contained"
@@ -94,9 +142,11 @@ class Admin extends Component {
                         </button>
                 </form>
                 {addNewGenresForm}
+
             </div>
         );
     }
 }
 
-export default Admin;
+const putReduxStateOnProps = (reduxState) => ({ reduxState })
+export default connect(putReduxStateOnProps)(Admin);

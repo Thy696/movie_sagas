@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link, HashRouter, Switch, Route, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Details from '../Details/Details';
 
 class MovieItem extends Component {
 

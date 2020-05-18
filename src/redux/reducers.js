@@ -35,17 +35,6 @@ export const genres = (state = [], action) => {
     }
 }
 
-// Used to store new genres that we get databasae 
-export const addRendes = (state = [], action) => {
-    switch (action.type) {
-        case 'FETCH_NEW_GENRES':
-            console.log('data after add genres: ', action.payload)
-            return action.payload;
-        default:
-            return state;
-    }
-}
-
 // Used to store movies that we search from databasae 
 export const search = (state = [], action) => {
     // console.log('in giphyReducer', action.payload);
@@ -60,7 +49,8 @@ export const search = (state = [], action) => {
 export const genresDatabase = (state = [], action) => {
     switch (action.type) {
         case 'SET_GENRES_DATABASE':
-            return action.payload;//return what we have from server
+            console.log('------>', action.payload);
+            return state = action.payload;//return what we have from server
         default:
             return state;
     }

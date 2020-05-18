@@ -32,30 +32,17 @@ app.get('/movies', (req, res) => {
 app.get('/search/:searchValue', (req, res) => {
     console.log('in /search GET:', req.params.searchValue);
     let searchValue = req.params.searchValue;
-    const queryText =(`SELECT "title","poster", "description" FROM "movies" 
+    const queryText = (`SELECT "title","poster", "description" FROM "movies" 
     WHERE "title" LIKE '%${searchValue}%';`)
     pool.query(queryText)
-      .then((response) => {
-        res.send(response.rows);
-      }).catch((err) => {
-        console.log(err);
-        res.send(500);
-      });//end axios
+        .then((response) => {
+            res.send(response.rows);
+        }).catch((err) => {
+            console.log(err);
+            res.send(500);
+        });//end axios
     // res.send(req.params.searchValue);
-  });//end get
-
-
-// //POST new genres to database by axios
-// app.post('/genres', (req, res) => {
-//     let query = `INSERT INTO "genres" ("name")
-//                  VALUES ($1)`;
-//     pool.query(query, [req.body.name]).then( result => {
-//       res.sendStatus(200);
-//     }).catch(err => {
-//       console.log(err);
-//       res.sendStatus(500);
-//     })
-//   })
+});//end get
 
 // GET new genres that from database by axios
 app.get(`/genres`, (req, res) => {
@@ -67,6 +54,20 @@ app.get(`/genres`, (req, res) => {
         }).catch(err => {
             console.log('Error on GET genres', err);
         })
+})
+
+//POST new genres to database by axios
+app.post(`/genres`, (req, res) => {
+    console.log('send this to database: ',req.body.genres);
+    const queryText = `INSERT INTO "genres" ("name") VALUES ($1)`;
+    pool.query(queryText, [req.body.genres])
+        .then(result => {
+            res.sendStatus(200);
+        }).catch(err => {
+            console.log(err);
+            res.sendStatus(500);
+        })
+    // res.sendStatus(200);
 })
 
 

@@ -10,12 +10,9 @@ export function* rootSaga() {
     yield takeEvery('FETCH_DETAIL', getDetail);
     yield takeEvery('FETCH_GENRES', getGenres);
     yield takeEvery('SUBMIT', editDetail);
-    yield takeEvery('ADD_NEW_GENRES', addRendes);
     yield takeEvery('SEARCH', searchMovie);
     yield takeEvery('GET_GENRES_FROM_DATABASE', getGenresDatabase);
-
-
-
+    yield takeEvery('ADD_NEW_GENRES', addRendes);
 }
 
 //send the get request to server to get data movies from database
@@ -80,19 +77,6 @@ export function* editDetail(action) {
     }
 }
 
-//send the post request to server to add new genres to database
-export function* addRendes(action) {
-    //try catch
-    try {
-        yield axios.post(`/genres`, action.payload);//wait to get the data from server
-        yield put({
-            type: 'FETCH_NEW_GENRES', // set action type = SET_DETAIL
-        })
-    } catch (err) {
-        console.log('Error in add genres', err);
-    }
-}
-
 //send the get request to server to get data that we searching from database
 export function* searchMovie(action) {
     // console.log('-----> in searchMovie', action.payload);
@@ -111,6 +95,8 @@ export function* searchMovie(action) {
     }
 }
 
+
+
 //send the get request to server to get data genres from database
 export function* getGenresDatabase(action) {
     //try catch
@@ -118,10 +104,23 @@ export function* getGenresDatabase(action) {
         const response = yield axios.get(`/genres`);//wait to get the data from server
         console.log('data in getGenres: ', response.data);
         yield put({
-            type: 'SET_GENRES_DATABASE', // set this action type = SET_GENRES
+            type: 'SET_GENRES_DATABASE', // set this action type = SET_GENRES_DATABASE
             payload: response.data // set payload equal datas that we got from database
         })
     } catch (err) {
         console.log(err); // if get data is not success, logging out error
+    }
+}
+
+//send the post request to server to add new genres to database
+export function* addRendes(action) {
+    // console.log('----------> add this genres to server: ',action.payload )
+    //try catch
+    try {
+        yield axios.post(`/genres`, {genres:action.payload});//wait to get the data from server
+    //    console.log('----------> add this genres to server: ',action.payload);
+        yield put({type: 'GET_GENRES_FROM_DATABASE'});// set action type = GET_GENRES_FROM_DATABASE to refesh the DOM after add new genres
+    } catch (err) {
+        console.log('Error in add genres', err);
     }
 }

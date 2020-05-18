@@ -41,11 +41,6 @@ class MovieItem extends Component {
                             onClick={this.sendDetail}
                         />
                     </Link><br />
-                    {/* <Switch>
-                        <Route path="/details/:id" component={<Details />} />
-                    </Switch> */}
-
-
                     <p>{this.props.movieData.title}</p>
 
                     {/* Display genres  */}

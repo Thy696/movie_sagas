@@ -42,7 +42,7 @@ class Edit extends Component {
     // create a SUBMIT action to submit the changing
     handleSave = () => {
         console.log('Save clicked!');
-        // this.props.history.push('/details');
+        this.props.history.push('/details');
         this.props.dispatch({
             type: 'SUBMIT',
             payload: this.state // set payload = data in state after changing
@@ -76,13 +76,13 @@ class Edit extends Component {
         let saveButton;
         let titleInput;
         let descriptionInput;
-        if (this.state.cancelButton) { 
+        if (this.state.cancelButton) {
             cancelButton = (<button onClick={this.handleCancel}>Cancel</button>)
         }
-        if (this.state.saveButton) {  
+        if (this.state.saveButton) {
             saveButton = (<button onClick={this.handleSave}>Save</button>)
         }
-        if (this.state.inputTitle) { 
+        if (this.state.inputTitle) {
             titleInput = (<input type="text" placeholder="Edit Title"
                 value={this.state.detail.title}
                 onChange={(event) => this.handleChangeFor(event, 'title')} />)
@@ -104,18 +104,18 @@ class Edit extends Component {
                         {cancelButton}
                         {saveButton}
                         {/* <button onClick={this.handleSave}>Save</button> */}
-                        <button onClick={this.backToDetail}>Back To Detail</button>
+                        {/* <button onClick={this.backToDetail}>Back To Detail</button> */}
 
-                        <h3>Title: {this.props.reduxState.details.title}</h3>
-
+                        {/* <h3>Title: {this.props.reduxState.details.title}</h3> */}
+                        <br />
                         {/* loop through the array genres that we got from reducer genres to display index on DOM */}
-                        {this.props.reduxState.genres.map(item => {
+                        Genres: {this.props.reduxState.genres.map(item => {
                             return (
                                 <span key={item}> {item}</span>
                             )
                         })
                         }
-                        <p>Description: {this.props.reduxState.details.description}</p>
+                        {/* <p>Description: {this.props.reduxState.details.description}</p> */}
                     </div>
                 </Paper>
             </div>

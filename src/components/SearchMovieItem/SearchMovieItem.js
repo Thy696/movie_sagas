@@ -42,17 +42,6 @@ class SearchMovieItem extends Component {
                         />
                     </Link><br />
                     <p>{this.props.movieData.title}</p>
-
-                    {/* Display genres  */}
-                    <div className="genres_list">Genres:
-                    {/* //mapping through genres array that we got from reducer genres */}
-                        {/* {this.props.movieData.genres.map(item => {
-                            return (
-                                <span key={item}> {item}</span>
-                            )
-                        })
-                        } */}
-                    </div>
                     {/* Display description  */}
                     <p>{this.props.movieData.description}</p>
 

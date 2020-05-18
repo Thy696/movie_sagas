@@ -71,6 +71,10 @@
 .edit_content{
   padding: 25px;
 }
+.show_description:hover {
+  color: rgba(65, 65, 206, 0.952);
+  padding-top: 1px;
+}
 
 /* -------------------------Admin---------------------------------------------------------- */
 

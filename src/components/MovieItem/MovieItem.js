@@ -25,13 +25,10 @@ class MovieItem extends Component {
         })
     }
 
-
-
     render() {
 
         return (
             <div className="movie_item">
-                <h1>ID: {this.props.movieData.id}</h1>
                 <HashRouter>
                     {/* create an Link to bring the user to the Detail page
                  when the user click on this poster  */}

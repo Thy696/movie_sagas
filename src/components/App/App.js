@@ -5,7 +5,7 @@ import { HashRouter, Route } from 'react-router-dom';
 import Home from '../Home/Home';
 import Details from '../Details/Details'
 import Edit from '../Edit/Edit'
-
+import Admin from '../Admin/Admin'
 
 
 
@@ -19,9 +19,8 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/details" component={Details} />
           <Route path="/edit" component={Edit} />
-          {/* <Switch>
-            <Route path="/:id" children={<Details />} />
-          </Switch> */}
+          <Route path="/admin" component={Admin} />
+          
         </HashRouter>
       </div>
     );

@@ -71,3 +71,17 @@
 .edit_content{
   padding: 25px;
 }
+
+/* -------------------------Admin---------------------------------------------------------- */
+
+.form{
+  border: 1px solid black;
+  margin: 10% 30%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+}
+
+.login-btn{
+  margin-top: 20px;
+}

@@ -47,6 +47,7 @@ class Edit extends Component {
             type: 'SUBMIT',
             payload: this.state // set payload = data in state after changing
         })
+        //set save and cancel button to false to hide save button and cancel button after the user click submit
         this.setState({
             // descriptionVisible: true // when the picture have been click,descriptionVisible will switch to true and show it up 
             cancelButton: !this.state.cancelButton, // when the picture have been click,descriptionVisible will switch to true and show it up 

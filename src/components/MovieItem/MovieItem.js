@@ -25,8 +25,6 @@ class MovieItem extends Component {
         })
     }
 
-
-
     render() {
 
         return (

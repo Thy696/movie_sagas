@@ -40,3 +40,7 @@
 [x] Allow the user to refresh the details or edit page. The url for the details page would be something like /details/1 for movie with id of 1.
 [] Allow the user to add a genre to a movie.
 [] Allow the user to remove a genre from a movie.
+[x] Create an Admin page. Add a link from the Home page to the Admin page.
+[x] The page should initially display a login form. 
+[]  When the user enters the correct username (camera) and password (action)
+[] The page should display a form to add genres to the database, and a list of all of the genres with an x to remove them from the database.

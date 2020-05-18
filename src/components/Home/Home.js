@@ -9,8 +9,6 @@ import Paper from '@material-ui/core/Paper';
 
 import SearchMovieItem from '../SearchMovieItem/SearchMovieItem';
 
-
-
 class Home extends Component {
     // create component did mount to append what we got from database to DOM
     componentDidMount() {
@@ -24,40 +22,37 @@ class Home extends Component {
         })
     }
 
-    // useStyles = () => { makeStyles( (theme) => ({
-    //         root: {
-    //             flexGrow: 1,
-    //         },
-    //         paper: {
-    //             height: 1,
-    //             width: 10,
-    //             color: theme.palette.text.secondary,
-    //         },
-    //         control: {
-    //             padding: theme.spacing(2),
-    //         },
-    //     }))
-    // };
+    state = {
+        searchValue: ''
+    };
+
+    handleChangeFor = (event) => {
+        console.log('in handleChange:', event.target.value);
+        this.setState({
+            searchValue: event.target.value
+        });// end setState   
+    }
+
+    handleSearch = () => {
+        console.log('in handleClick');
+        this.props.dispatch({
+            type: 'SEARCH',
+            payload: this.state.searchValue
+        });// end dispatch
+        // console.log(' search this : ', this.state.searchValue)
+
+    };// end handleSearch
 
     render() {
 
-        // const useStyles = makeStyles((theme) => ({
-        //     root: {
-        //       flexGrow: 1,
-        //     },
-        //     paper: {
-        //       height: 140,
-        //       width: 100,
-        //     },
-        //     control: {
-        //       padding: theme.spacing(2),
-        //     },
-        //   }));
-
-        // const classes = useStyles();
-
         return (
             <div>
+                <input type="text" placeholder="Search movie"
+                    onChange={this.handleChangeFor}
+                ></input>
+                <button onClick={this.handleSearch}
+                >Search</button>
+
                  <Grid>
                         <Grid container justify="center" >
                             {this.props.reduxState.search.map((searchMovie) => (
@@ -73,9 +68,6 @@ class Home extends Component {
                             ))}
                         </Grid>
                     </Grid>
-
-
-
                 {/* mapping through the array movies that got from index to append list of movies to DOM */}
                 <div className="list_movie">
                     <Grid>

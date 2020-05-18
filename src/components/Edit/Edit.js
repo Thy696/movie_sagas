@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+
+import TextField from '@material-ui/core/TextField';
+
+
+
 
 
 class Edit extends Component {
@@ -70,44 +76,60 @@ class Edit extends Component {
             },
         })
     }
+    
 
     render() {
+        const classes = this.styles;
+
+
         // use the if conditions to hide cancel button, save button, title input, description input if the user click on save button
         let cancelButton;
         let saveButton;
         let titleInput;
         let descriptionInput;
         if (this.state.cancelButton) {
-            cancelButton = (<button onClick={this.handleCancel}>Cancel</button>)
+            cancelButton = (<Button variant="contained" onClick={this.handleCancel}>Cancel</Button>)
         }
         if (this.state.saveButton) {
-            saveButton = (<button onClick={this.handleSave}>Save</button>)
+            saveButton = (<Button variant="contained" onClick={this.handleSave}>Save</Button>)
         }
         if (this.state.inputTitle) {
-            titleInput = (<input type="text" placeholder="Edit Title"
+            titleInput = (<TextField type="text" placeholder="Edit Title"
                 value={this.state.detail.title}
+                variant="outlined"
+                label="Title"
                 onChange={(event) => this.handleChangeFor(event, 'title')} />)
         }
         if (this.state.inputDescription) {
-            descriptionInput = (<input type="text" placeholder="Edit Description"
+            descriptionInput = (<TextField type="text" placeholder="Edit Description"
+                variant="outlined"
                 value={this.state.detail.description}
+                id="outlined-multiline-static"
+                label="Description"
+                multiline
+                rows={10}
+                variant="outlined"
                 onChange={(event) => this.handleChangeFor(event, 'description')} />)
         }
+
+
 
         return (
 
             <div className="edit_wrap">
                 <Paper elevation={3}>
                     <div className="edit_content">
-                        {titleInput}
-                        {descriptionInput}
+                        <div className="edit_item">
+                            {titleInput}
+                            <br />
+                            <br />
+                            {descriptionInput}
+                            <br />
+                            <br />
+                            {cancelButton}
+                            {saveButton}
+                        </div>
                         <br />
-                        {cancelButton}
-                        {saveButton}
-                        {/* <button onClick={this.handleSave}>Save</button> */}
-                        {/* <button onClick={this.backToDetail}>Back To Detail</button> */}
-
-                        {/* <h3>Title: {this.props.reduxState.details.title}</h3> */}
                         <br />
                         {/* loop through the array genres that we got from reducer genres to display index on DOM */}
                         Genres: {this.props.reduxState.genres.map(item => {
@@ -116,7 +138,6 @@ class Edit extends Component {
                             )
                         })
                         }
-                        {/* <p>Description: {this.props.reduxState.details.description}</p> */}
                     </div>
                 </Paper>
             </div>

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Button from '@material-ui/core/Button';
+
+
 class Genres extends Component {
 
     //Sending the id of specific genres to index.js to create a remove request to database 
@@ -14,8 +17,8 @@ class Genres extends Component {
     render() {
         return (
             <div >
-                <span >{this.props.genresDatabase.name}</span>
-                <button onClick={this.handleRemove}>Remove</button>
+                <span >{this.props.genresDatabase.name}</span><span>   </span>
+                <Button onClick={this.handleRemove} variant="contained" size="small">Remove</Button>
             </div>
         );
     }

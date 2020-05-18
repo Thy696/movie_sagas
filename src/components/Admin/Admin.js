@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import Genres from '../Genres/Genres';
 
 import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
+
 
 class Admin extends Component {
     state = {
@@ -11,7 +13,7 @@ class Admin extends Component {
             password: ''
         },
         addGenresForm: false,
-        genres:'',
+        genres: '',
     }
     // keyPressed = (event) => {
     //     if (event.key === "Enter") {
@@ -29,7 +31,7 @@ class Admin extends Component {
             type: 'GET_GENRES_FROM_DATABASE',
         })
     }
-//---------------------------Login form------------------------------------------------------------------------
+    //---------------------------Login form------------------------------------------------------------------------
     handleChangeFor = (event, property) => { //create handleChangeFor function and call it when the input field changes
         this.setState({
             loginForm: {
@@ -61,28 +63,36 @@ class Admin extends Component {
             },
         });
     }
-//---------------------------Add new genres form------------------------------------------------------------------------
+    //---------------------------Add new genres form------------------------------------------------------------------------
 
-handleGenresChange = (event) => { //create handleChangeFor function and call it when the input field changes
-    this.setState({
-        genres: event.target.value, // change it after the user type in input field
-    });
-}
+    handleGenresChange = (event) => { //create handleChangeFor function and call it when the input field changes
+        this.setState({
+            genres: event.target.value, // change it after the user type in input field
+        });
+    }
 
-handleAdd = (event) => { // called when the add new picture is pressed
-    console.log('Add clicked!');
-    if (this.state.genres === '') {
-        alert("Please add an genres in input field!")
-    } else {
-        this.clearUrlFields();
-        this.props.dispatch({
-            type: 'ADD_NEW_GENRES',
-            payload: this.state.genres
+    handleAdd = (event) => { // called when the add new picture is pressed
+        console.log('Add clicked!');
+        if (this.state.genres === '') {
+            alert("Please add an genres in input field!")
+        } else {
+            this.clearUrlFields();
+            this.props.dispatch({
+                type: 'ADD_NEW_GENRES',
+                payload: this.state.genres
+            })
+            this.clearInputField();
+        }
+    }
+
+    clearInputField = () => {
+        this.setState({
+            genres: '',
         })
     }
-}
 
-//---------------------------Remove genres------------------------------------------------------------------------
+
+    //---------------------------Remove genres------------------------------------------------------------------------
 
 
     render() {
@@ -91,17 +101,17 @@ handleAdd = (event) => { // called when the add new picture is pressed
             addNewGenresForm = (
                 <div>
                     <form className="genresForm form">
-                        <input type="text" placeholder="Add new genres" 
-                        onChange = {this.handleGenresChange}/>
-                        <button onClick = {this.handleAdd}>Add</button>
+                        <Input type="text" placeholder="Add new genres"
+                            onChange={this.handleGenresChange} />
+                        <Button onClick={this.handleAdd} variant="contained" >Add</Button>
                     </form>
-                    <div className = "genres_admin">
+                    <div className="genres_admin">
                         <h5>Genres list:</h5>
                         {this.props.reduxState.genresDatabase.map(genresDatabase => {
                             return (
                                 <div key={genresDatabase.id}>
-                                    <Genres 
-                                    genresDatabase = {genresDatabase}
+                                    <Genres
+                                        genresDatabase={genresDatabase}
 
                                     />
                                 </div>
@@ -134,12 +144,12 @@ handleAdd = (event) => { // called when the add new picture is pressed
                         id="mui-theme-provider-standard-input"
                     // onKeyPress={this.keyPressed}
                     /><br />
-
-                    <button variant="contained"
+                    <br />
+                    <Button variant="contained"
                         type="submit"
                         className="login-btn btn"
                     >Login
-                        </button>
+                        </Button>
                 </form>
                 {addNewGenresForm}
 

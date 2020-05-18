@@ -35,6 +35,12 @@ class Home extends Component {
         });// end setState   
     }
 
+    clearInputField = () => {
+        this.setState({
+            searchValue: '',
+        })
+    }
+
     handleSearch = () => {
         console.log('in handleClick');
         this.props.dispatch({
@@ -45,12 +51,8 @@ class Home extends Component {
         this.clearInputField();
     };// end handleSearch
 
-    clearInputField = () => {
-        this.setState({
-            searchValue: '',
-        })
-    }
-
+  
+   
     keyPressed = (event) => {
         if (event.key === "Enter") {
             this.handleSearch();
@@ -67,7 +69,7 @@ class Home extends Component {
                     onKeyPress={this.keyPressed}
                 ></Input>
 
-                <Grid className = "search_result">
+                <Grid className="search_result">
                     <Grid container justify="center" >
                         {this.props.reduxState.search.map((searchMovie) => (
                             <Grid item xs={3} >

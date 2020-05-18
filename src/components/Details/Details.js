@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
-// import queryString from 'query-string';
+import Button from '@material-ui/core/Button';
 
 
 
@@ -61,8 +61,8 @@ class Details extends Component {
                     {/* the buttons */}
                     <div className="detail_content">
 
-                        <button onClick={this.handleBack}>Back to list</button>
-                        <button onClick={this.handleEdit}>Edit</button>
+                        <Button variant="contained" onClick={this.handleBack}>Back to list</Button>
+                        <Button variant="contained" onClick={this.handleEdit}>Edit</Button>
 
                         <h3>{this.state.title}</h3>
 

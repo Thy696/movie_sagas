@@ -5,8 +5,6 @@ import Button from '@material-ui/core/Button';
 
 
 
-
-
 class Details extends Component {
     //create an state to store data that we get from reducer details in index.js
     state = {

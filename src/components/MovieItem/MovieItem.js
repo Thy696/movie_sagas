@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, HashRouter } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
@@ -42,7 +42,6 @@ class MovieItem extends Component {
 
         return (
             <div className="movie_item">
-                <HashRouter>
                     {/* create an Link to bring the user to the Detail page
                  when the user click on this poster  */}
                     <Link to={`/details/${this.props.movieData.id}`}>
@@ -70,7 +69,6 @@ class MovieItem extends Component {
                     onClick={this.handleShowDescription} 
                     className = "show_description"></ArrowDropDownIcon>
                     {description}
-                </HashRouter>
             </div >
         )
 

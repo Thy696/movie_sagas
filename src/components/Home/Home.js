@@ -51,13 +51,12 @@ class Home extends Component {
         this.clearInputField();
     };// end handleSearch
 
-  
-   
     keyPressed = (event) => {
         if (event.key === "Enter") {
             this.handleSearch();
         }
     }
+
     render() {
 
 

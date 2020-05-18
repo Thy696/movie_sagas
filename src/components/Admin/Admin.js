@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Genres from '../Genres/Genres';
 
 import Input from '@material-ui/core/Input';
 
@@ -81,6 +82,8 @@ handleAdd = (event) => { // called when the add new picture is pressed
     }
 }
 
+//---------------------------Remove genres------------------------------------------------------------------------
+
 
     render() {
         let addNewGenresForm;
@@ -97,7 +100,10 @@ handleAdd = (event) => { // called when the add new picture is pressed
                         {this.props.reduxState.genresDatabase.map(genresDatabase => {
                             return (
                                 <div key={genresDatabase.id}>
-                                    <span >{genresDatabase.name}</span>
+                                    <Genres 
+                                    genresDatabase = {genresDatabase}
+
+                                    />
                                 </div>
                             )
                         })
@@ -127,7 +133,6 @@ handleAdd = (event) => { // called when the add new picture is pressed
                         className="input input-password"
                         id="mui-theme-provider-standard-input"
                     // onKeyPress={this.keyPressed}
-
                     /><br />
 
                     <button variant="contained"

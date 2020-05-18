@@ -42,5 +42,5 @@
 [] Allow the user to remove a genre from a movie.
 [x] Create an Admin page. Add a link from the Home page to the Admin page.
 [x] The page should initially display a login form. 
-[]  When the user enters the correct username (camera) and password (action)
-[] The page should display a form to add genres to the database, and a list of all of the genres with an x to remove them from the database.
+[x] When the user enters the correct username (camera) and password (action)
+[x] The page should display a form to add genres to the database, and a list of all of the genres with an x to remove them from the database.

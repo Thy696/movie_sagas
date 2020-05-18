@@ -28,6 +28,9 @@ Duration: 2 days sprint
 
 [x]   Use array_agg to display all genres on movie list page.
 
+[x] The page admin display a form to add genres to the database.
+    [x] Take the input from client, send that input data to index.js via dispatch. Then use Saga POST request to add new genres to database. And to end the add new genres, I use the same action type of the one that we got genres data from database before to get the data back and append to the DOM. 
+
 
 ## Screen Shot
 

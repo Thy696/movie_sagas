@@ -13,6 +13,7 @@ export function* rootSaga() {
     yield takeEvery('SEARCH', searchMovie);
     yield takeEvery('GET_GENRES_FROM_DATABASE', getGenresDatabase);
     yield takeEvery('ADD_NEW_GENRES', addRendes);
+    yield takeEvery('REMOVE_GENRES', removeRenres);
 }
 
 //send the get request to server to get data movies from database
@@ -63,13 +64,13 @@ export function* getGenres(action) {
 }
 
 export function* editDetail(action) {
-    // console.log('in getDetail', action.payload);
+    // console.log('in editDetail', action.payload);
     let editDetail = action.payload;
     //try catch
     try {
-        // console.log('data in try getDetail: ', forDetail);
+        // console.log('data in try editDetail: ', editDetail);
         yield put({
-            type: 'EDIT_DETAIL', // set action type = SET_DETAIL
+            type: 'EDIT_DETAIL', // set action type = EDIT_DETAIL
             payload: editDetail// set payload equal dispatch that we got from `MovieItem.js`
         })
     } catch (err) {
@@ -120,6 +121,18 @@ export function* addRendes(action) {
         yield axios.post(`/genres`, {genres:action.payload});//wait to get the data from server
     //    console.log('----------> add this genres to server: ',action.payload);
         yield put({type: 'GET_GENRES_FROM_DATABASE'});// set action type = GET_GENRES_FROM_DATABASE to refesh the DOM after add new genres
+    } catch (err) {
+        console.log('Error in add genres', err);
+    }
+}
+
+export function* removeRenres(action) {
+    //    console.log('----------> remove this genres: ',action.payload);
+    //try catch
+    try {
+        yield axios.delete(`/genres/${action.payload}`);//wait to remove the data from server
+    //    console.log('----------> remove this genres: ',action.payload);
+        yield put({type: 'GET_GENRES_FROM_DATABASE'});// set action type = GET_GENRES_FROM_DATABASE to refesh the DOM after remove a specific genres
     } catch (err) {
         console.log('Error in add genres', err);
     }

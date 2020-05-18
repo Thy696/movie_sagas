@@ -67,7 +67,22 @@ app.post(`/genres`, (req, res) => {
             console.log(err);
             res.sendStatus(500);
         })
-    // res.sendStatus(200);
+    // res.sendStatus(200); // test if post request is work
+})
+
+app.delete('/genres/:id', (req, res) => {
+    let genresId = req.params.id;// We are using a request parameter (req.params) to identify
+    // the specific picture. We expect this will be an id from the database.
+    console.log('Delete request for this id: ', genresId);
+    let sqlText = `DELETE FROM genres WHERE id = $1`;
+    pool.query(sqlText, [genresId])
+        .then(result => {
+            console.log('in DELETE router')
+            res.sendStatus(200);
+        }).catch(err => {
+            console.log('Error in DELETE route', err);
+            res.sendStatus(500);
+        })
 })
 
 

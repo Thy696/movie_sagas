@@ -7,11 +7,13 @@ class Edit extends Component {
     //create an state to store data that we get from reducer details in index.js
     state = {
         detail: {
-            title: '',
-            description: ''
+            title: this.props.reduxState.details.title,
+            description: this.props.reduxState.details.description
         },
         cancelButton: true,
         saveButton: true,
+        inputTitle: true,
+        inputDescription: true
     }
 
     componentDidMount() {
@@ -49,7 +51,8 @@ class Edit extends Component {
             // descriptionVisible: true // when the picture have been click,descriptionVisible will switch to true and show it up 
             cancelButton: !this.state.cancelButton, // when the picture have been click,descriptionVisible will switch to true and show it up 
             saveButton: !this.state.saveButton, // when the picture have been click,descriptionVisible will switch to true and show it up 
-
+            inputTitle: !this.state.inputTitle,
+            inputDescription: !this.state.inputDescription
         })
         this.clearInputField();
     }
@@ -68,32 +71,36 @@ class Edit extends Component {
     }
 
     render() {
-
+        // use the if conditions to hide cancel button, save button, title input, description input if the user click on save button
         let cancelButton;
         let saveButton;
-        if (this.state.cancelButton) { // use the condition if to hide cancel button if the user click on save button
+        let titleInput;
+        let descriptionInput;
+        if (this.state.cancelButton) { 
             cancelButton = (<button onClick={this.handleCancel}>Cancel</button>)
         }
-        if (this.state.saveButton) {  // use the condition if to hide save button if the user click on save button
-            saveButton = (<button onClick={this.handleSave}>Save</button>
-            )
+        if (this.state.saveButton) {  
+            saveButton = (<button onClick={this.handleSave}>Save</button>)
         }
-
+        if (this.state.inputTitle) { 
+            titleInput = (<input type="text" placeholder="Edit Title"
+                value={this.state.detail.title}
+                onChange={(event) => this.handleChangeFor(event, 'title')} />)
+        }
+        if (this.state.inputDescription) {
+            descriptionInput = (<input type="text" placeholder="Edit Description"
+                value={this.state.detail.description}
+                onChange={(event) => this.handleChangeFor(event, 'description')} />)
+        }
 
         return (
 
             <div className="edit_wrap">
                 <Paper elevation={3}>
                     <div className="edit_content">
-                        <input type="text" placeholder="Edit Title"
-                            value={this.state.detail.title}
-                            onChange={(event) => this.handleChangeFor(event, 'title')}
-                        />
-                        <input type="text" placeholder="Edit Description"
-                            value={this.state.detail.description}
-                            onChange={(event) => this.handleChangeFor(event, 'description')}
-                        /><br />
-
+                        {titleInput}
+                        {descriptionInput}
+                        <br />
                         {cancelButton}
                         {saveButton}
                         {/* <button onClick={this.handleSave}>Save</button> */}

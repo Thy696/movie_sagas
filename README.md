@@ -65,6 +65,4 @@ Thanks to Prime Digital Academy who equipped and helped me to make this applicat
 
 ## Support
 
-If you have suggestions or issues, please email me at If you have suggestions or issues, please email me at
-git config --global Thy Christiansen
-git config --global thyvu0411@gmail.com
+If you have suggestions or issues, please email me at If you have suggestions or issues, please email me at thyvu0411@gmail.com

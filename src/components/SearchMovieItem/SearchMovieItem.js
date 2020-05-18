@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { Link, HashRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+
+
 class SearchMovieItem extends Component {
 
     state = {
         genres: '',
+        description: false,
     }
-
 
     //Use sendDetail function to send the title, description and genres to index by dispatch
     sendDetail = () => {
@@ -25,10 +28,19 @@ class SearchMovieItem extends Component {
         })
     }
 
-
+    handleShowDescription = () => {
+        console.log('click!')
+        this.setState({
+            description: !this.state.description
+        })
+    }
 
 
     render() {
+        let description;
+        if (this.state.description) {
+            description = (<p>{this.props.movieData.description}</p>)
+        }
         return (
             <div className="movie_item">
                 <HashRouter>
@@ -43,8 +55,10 @@ class SearchMovieItem extends Component {
                     </Link><br />
                     <p>{this.props.movieData.title}</p>
                     {/* Display description  */}
-                    <p>{this.props.movieData.description}</p>
-
+                    <ArrowDropDownIcon 
+                    onClick={this.handleShowDescription} 
+                    className = "show_description"></ArrowDropDownIcon>
+                    {description}
                 </HashRouter>
             </div >
         )

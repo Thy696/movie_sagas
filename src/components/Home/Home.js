@@ -5,6 +5,9 @@ import SearchMovieItem from '../SearchMovieItem/SearchMovieItem';
 
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Input from '@material-ui/core/Input';
+import SearchIcon from '@material-ui/icons/Search';
+
 
 
 
@@ -48,17 +51,23 @@ class Home extends Component {
         })
     }
 
+    keyPressed = (event) => {
+        if (event.key === "Enter") {
+            this.handleSearch();
+        }
+    }
     render() {
+
 
         return (
             <div>
-                <input type="text" placeholder="Search movie"
+                <span className="searchIcon"><SearchIcon /></span>
+                <Input type="text" placeholder="Search movie"
                     onChange={this.handleChangeFor}
-                ></input>
-                <button onClick={this.handleSearch}
-                >Search</button>
+                    onKeyPress={this.keyPressed}
+                ></Input>
 
-                <Grid>
+                <Grid className = "search_result">
                     <Grid container justify="center" >
                         {this.props.reduxState.search.map((searchMovie) => (
                             <Grid item xs={3} >

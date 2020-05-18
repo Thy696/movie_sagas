@@ -52,6 +52,12 @@
   background-color: rgb(182, 182, 182);
 }
 
+.search_result{
+  background-color: rgba(218, 218, 218, 0.66);
+  margin: 10px 10%;
+  border-radius: 5px;
+}
+
 .genres_list{
   font-size: 12px;
   
@@ -74,6 +80,10 @@
 .show_description:hover {
   color: rgba(65, 65, 206, 0.952);
   padding-top: 1px;
+}
+
+.searchIcon{
+  margin-top: 100px;
 }
 
 /* -------------------------Admin---------------------------------------------------------- */

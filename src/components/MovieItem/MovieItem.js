@@ -82,14 +82,3 @@ class MovieItem extends Component {
 // const putReduxStateOnProps = (reduxState) => ({ reduxState })
 export default connect()(MovieItem);
 
-// function Details() {
-//     // We can use the `useParams` hook here to access
-//     // the dynamic pieces of the URL.
-//     let {id} = useParams(this.props.movieData.id);
-
-//     return (
-//       <div>
-//         <h3>ID: {id}</h3>
-//       </div>
-//     );
-//   }

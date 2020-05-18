@@ -33,10 +33,38 @@ Duration: 2 days
 
 ## Screen Shot
 
+![mockup one](projectInterface/pic_1.png)
+
+![mockup one](projectInterface/pic_2.png)
+
+![mockup one](projectInterface/pic_3.png)
+
+![mockup one](projectInterface/pic_4.png)
+
+![mockup one](projectInterface/pic_5.png)
+
+![mockup one](projectInterface/pic_6.png)
+
+
 ## Installation
+
+1. Create a database named your database name,
+2. The queries in the tables.sql file are set up to create all the necessary tables and populate the needed data to allow the application to run correctly. The project is built on Postgres, so you will need to make sure to have that installed. We recommend using Postico to run those queries as that was used to create the queries,
+3. Open up your editor of choice and run an npm install
+4. Run npm run server in your terminal
+5. Run npm run client in your terminal
+6. The npm run client command will open up a new browser tab for you!
 
 ## Built With
 
+HTML, CSS, React, JSON, Node.js, Postico(database), Express.js, Material-UI, 
+
 ## Acknowledgement
 
+Thanks to Prime Digital Academy who equipped and helped me to make this application a reality.
+
 ## Support
+
+If you have suggestions or issues, please email me at If you have suggestions or issues, please email me at
+git config --global Thy Christiansen
+git config --global thyvu0411@gmail.com

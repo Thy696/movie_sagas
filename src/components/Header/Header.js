@@ -11,7 +11,7 @@ class Header extends Component {
     render() {
         return (
             <div className="header">
-                <h1 onClick={this.handleClick} className="header_text">Thy's movie list</h1>
+                <h1 onClick={this.handleClick} className="header_text">Movie list</h1>
             </div>
         )
     }

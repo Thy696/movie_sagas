@@ -14,16 +14,6 @@ class Details extends Component {
         description: this.props.reduxState.details.description
     }
 
-    // componentDidMount() {
-    //     const params = new URLSearchParams(this.props.location.search);
-    //     // params.get("details");
-    //     console.log("--------------------id detail", params);
-    //     const values = queryString.parse(this.props.location.search);
-    //     console.log(values.details);
-
-    //     // const 
-    // }
-
     //handle click when user click on Back To List button
     handleBack = () => {
         console.log('Back clicked!');

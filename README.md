@@ -45,6 +45,9 @@ Duration: 2 days
 
 ![mockup one](projectInterface/pic_6.png)
 
+![mockup one](projectInterface/pic_7.png)
+
+
 
 ## Installation
 

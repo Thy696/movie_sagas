@@ -12,6 +12,9 @@ export function* rootSaga() {
     yield takeEvery('SUBMIT', editDetail);
     yield takeEvery('ADD_NEW_GENRES', addRendes);
     yield takeEvery('SEARCH', searchMovie);
+    yield takeEvery('GET_GENRES_FROM_DATABASE', getGenresDatabase);
+
+
 
 }
 
@@ -48,11 +51,11 @@ export function* getDetail(action) {
 
 //send the get request to server to get data movies from database
 export function* getGenres(action) {
-    console.log('--------in getGenres', action.payload);
+    // console.log('--------in getGenres', action.payload);
     let forGenres = action.payload;
     //try catch
     try {
-        console.log('--------in getGenres', action.payload);
+        // console.log('--------in getGenres', action.payload);
         yield put({
             type: 'SET_GENRES', // set action type = SET_DETAIL
             payload: forGenres// set payload equal dispatch that we got from `MovieItem.js`
@@ -105,5 +108,20 @@ export function* searchMovie(action) {
         })
     } catch (err) {
         console.log('Error in searchMovie', err);
+    }
+}
+
+//send the get request to server to get data genres from database
+export function* getGenresDatabase(action) {
+    //try catch
+    try {
+        const response = yield axios.get(`/genres`);//wait to get the data from server
+        console.log('data in getGenres: ', response.data);
+        yield put({
+            type: 'SET_GENRES_DATABASE', // set this action type = SET_GENRES
+            payload: response.data // set payload equal datas that we got from database
+        })
+    } catch (err) {
+        console.log(err); // if get data is not success, logging out error
     }
 }

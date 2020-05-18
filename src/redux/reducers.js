@@ -55,3 +55,13 @@ export const search = (state = [], action) => {
     }
     return state;
 };//end reducer
+
+// Used to store genres returned from the server
+export const genresDatabase = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_GENRES_DATABASE':
+            return action.payload;//return what we have from server
+        default:
+            return state;
+    }
+}

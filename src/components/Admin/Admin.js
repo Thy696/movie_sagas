@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import Input from '@material-ui/core/Input';
 
 class Admin extends Component {
@@ -9,10 +11,21 @@ class Admin extends Component {
         },
         addGenresForm: false
     }
-    keyPressed = (event) => {
-        if (event.key === "Enter") {
-            this.props.handleSubmit()
-        }
+    // keyPressed = (event) => {
+    //     if (event.key === "Enter") {
+    //         this.handleSubmit();
+    //     }
+    // }
+
+    componentDidMount() {
+        this.getGenres(); // run the GET request
+    }
+
+    //GET request and send action type back index.js via dispatch 
+    getGenres() {
+        this.props.dispatch({
+            type: 'GET_GENRES_FROM_DATABASE',
+        })
     }
 
     handleChangeFor = (event, property) => { //create handleChangeFor function and call it when the input field changes
@@ -26,8 +39,8 @@ class Admin extends Component {
 
     handleSubmit = (event) => { // called when the add new picture is pressed
         console.log('submit clicked!');
-        if (this.state.loginForm.username === '') {
-            alert("Please, add an url into the form!")
+        if (this.state.loginForm.username === '' || this.state.loginForm.password === '') {
+            alert("Make sure you added your username and password!")
         } else {
             this.clearUrlFields();
             //set add new genres form to be true when the user click on login button 
@@ -56,6 +69,18 @@ class Admin extends Component {
                         <input type="text" placeholder="Add new genres" />
                         <button>Add</button>
                     </form>
+                    <div className = "genres_admin">
+                        <h5>Genres list:</h5>
+                        {this.props.reduxState.genresDatabase.map(genresDatabase => {
+                            return (
+                                <div key={genresDatabase.id}>
+                                    <span >{genresDatabase.name}</span>
+                                </div>
+                            )
+                        })
+                        }
+                    </div>
+
 
                 </div>
             )
@@ -83,7 +108,7 @@ class Admin extends Component {
                         onChange={(event) => this.handleChangeFor(event, 'password')}
                         className="input input-password"
                         id="mui-theme-provider-standard-input"
-                        onKeyPress={this.keyPressed}
+                    // onKeyPress={this.keyPressed}
 
                     /><br />
 
@@ -94,9 +119,11 @@ class Admin extends Component {
                         </button>
                 </form>
                 {addNewGenresForm}
+
             </div>
         );
     }
 }
 
-export default Admin;
+const putReduxStateOnProps = (reduxState) => ({ reduxState })
+export default connect(putReduxStateOnProps)(Admin);

@@ -45,7 +45,7 @@ app.get('/search/:searchValue', (req, res) => {
   });//end get
 
 
-//POST new genres to database by axios
+// //POST new genres to database by axios
 // app.post('/genres', (req, res) => {
 //     let query = `INSERT INTO "genres" ("name")
 //                  VALUES ($1)`;
@@ -57,23 +57,17 @@ app.get('/search/:searchValue', (req, res) => {
 //     })
 //   })
 
-//GET new genres that we added from database by axios after post
-// app.get(`/genres/:id`, (req, res) => {
-//     //go to database, get all of data from movies table and order them by id
-//     const titleToGet = req.params.id;
-//     console.log('------------> get req.param',titleToGet)
-//     const queryText = `SELECT array_agg(genres.name) AS genres FROM movies 
-//     JOIN junction ON movies.id = junction.movie_id
-//     JOIN genres ON genres.id = junction.genres_id
-//     WHERE movies.id = $1;`
-//     pool.query(queryText, [titleToGet])
-//         .then((result) => {
-//                 console.log(`Title for genres: ${titleToGet}`)
-//             res.send(result.rows);//return rows
-//         }).catch(err => {
-//             console.log('Error on GET genres', err);
-//         })
-// })
+// GET new genres that from database by axios
+app.get(`/genres`, (req, res) => {
+    //go to database, get all of data from movies table and order them by id
+    const queryText = `SELECT * FROM genres ORDER BY id`
+    pool.query(queryText)
+        .then((result) => {
+            res.send(result.rows);//return rows
+        }).catch(err => {
+            console.log('Error on GET genres', err);
+        })
+})
 
 
 /** ---------- START SERVER ---------- **/

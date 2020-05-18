@@ -57,7 +57,7 @@ class Home extends Component {
                         <Grid container justify="center" >
                             {this.props.reduxState.search.map((searchMovie) => (
                                 <Grid  item xs={3} >
-                                    <div className="card_movie" key={searchMovie}>
+                                    <div className="card_movie" key={searchMovie.id}>
                                         <Paper>
                                             <SearchMovieItem // Connnect MovieItem component
                                                 movieData={searchMovie} //send the data parameter to MovieItem 
@@ -74,7 +74,7 @@ class Home extends Component {
                         <Grid container justify="center" >
                             {this.props.reduxState.movies.map((movie) => (
                                 <Grid  item xs={3} >
-                                    <div className="card_movie" key={movie}>
+                                    <div className="card_movie" key={movie.id}>
                                         <Paper>
                                             <MovieItem // Connnect MovieItem component
                                                 movieData={movie} //send the data parameter to MovieItem 

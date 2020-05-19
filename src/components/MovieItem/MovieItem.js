@@ -49,6 +49,7 @@ class MovieItem extends Component {
                             src={this.props.movieData.poster}
                             alt={this.props.movieData.title}
                             onClick={this.sendDetail}
+                            className = "poster"
                         />
                     </Link><br />
                     <p>{this.props.movieData.title}</p>

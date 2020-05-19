@@ -52,6 +52,10 @@
   background-color: rgb(182, 182, 182);
 }
 
+.poster:hover {
+  padding-top: 1px;
+  box-shadow: 3px 3px 4px gray;
+}
 .search_result{
   background-color: rgb(231, 231, 231);
   margin: 10px 5%;

@@ -6,7 +6,7 @@
   "dependencies": {
     "@material-ui/core": "^3.9.4",
     "@material-ui/icons": "^4.9.1",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "material-ui": "^1.0.0-beta.47",
     "pg": "^7.18.2",
     "react": "^16.13.0",
